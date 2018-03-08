@@ -1,0 +1,24 @@
+html{
+  font-size: 12px;
+  line-height: normal;
+}
+body{
+  background: linear-gradient(to bottom right, #5D6D7E, #5D6D7E);
+}
+
+.bold{
+  font-weight: 700;
+}
+
+.color{
+  color: #D35400;
+}
+
+.fa-pied-piper-alt{
+  color: #28B463;
+  font-size: 32px
+}
+.company{
+  color: white;
+  font-size: 20px
+}

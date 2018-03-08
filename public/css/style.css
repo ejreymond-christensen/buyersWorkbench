@@ -1,0 +1,9 @@
+.header{
+  background-color: #373738;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.outline{
+  border: solid 1px #373738;
+}
