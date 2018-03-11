@@ -1,0 +1,19 @@
+{
+  "name": "buyersworkbench",
+  "version": "1.0.0",
+  "description": "buyersWorkbench interface for online PO processing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ejreymond-christensen/buyersWorkbench.git"
+  },
+  "author": "elliot reymond-christensen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ejreymond-christensen/buyersWorkbench/issues"
+  },
+  "homepage": "https://github.com/ejreymond-christensen/buyersWorkbench#readme"
+}
