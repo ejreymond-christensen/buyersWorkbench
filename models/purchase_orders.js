@@ -1,7 +1,5 @@
-
-// To be filled with Sequelize to create purchase orders table
-
 'use strict';
+var Sequelize = require("sequelize");
 module.exports = function(sequelize, DataTypes) {
   var Purchase_orders = sequelize.define('Purchase_orders', {
     po_num: {
@@ -14,10 +12,12 @@ module.exports = function(sequelize, DataTypes) {
       type: Sequelize.STRING,
       allowNull: false
     }
+  }, {
+    timestamps: false
   });
 
   Purchase_orders.associate = function(models) {
-    models.Parts.hasMany(models.purchase_order_lines, {
+    models.Parts.hasMany(models.Purchase_order_lines, {
       onDelete: "CASCADE"
     });
   };

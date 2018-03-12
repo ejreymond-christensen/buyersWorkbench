@@ -1,4 +1,5 @@
 'use strict';
+var Sequelize = require("sequelize");
 module.exports = function(sequelize, DataTypes) {
   var Parts = sequelize.define('Parts', {
   	pn: {
@@ -62,6 +63,8 @@ module.exports = function(sequelize, DataTypes) {
     	allowNull: false, 
     	defaultValue: 0
     }
+  }, {
+    timestamps: false
   });
 
   return Parts;

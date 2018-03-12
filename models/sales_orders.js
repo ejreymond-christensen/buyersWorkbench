@@ -1,7 +1,5 @@
-
-// To be filled with Sequelize to create sales orders table
-
 'use strict';
+var Sequelize = require("sequelize");
 module.exports = function(sequelize, DataTypes) {
   var Sales_orders = sequelize.define('Sales_orders', {
     so_num: {
@@ -37,6 +35,8 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: 0
     }
+  }, {
+    timestamps: false
   });
 
 

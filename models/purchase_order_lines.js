@@ -1,7 +1,5 @@
-
-// To be filled with Sequelize to create purchase order lines table
-
 'use strict';
+var Sequelize = require("sequelize");
 module.exports = function(sequelize, DataTypes) {
   var Purchase_order_lines = sequelize.define('Purchase_order_lines', {
     po_number: {
@@ -33,6 +31,8 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: 0
     }
+  }, {
+    timestamps: false
   });
 
   Purchase_order_lines.associate = function (models) {
