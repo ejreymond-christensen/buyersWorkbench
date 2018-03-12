@@ -22,12 +22,18 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 
 // Sets up the handlebars
+var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // Routes
 // =============================================================
-require("./routes/api-routes.js")(app);
+var routes = require("./controllers/buyers_workbench.js");
+
+app.use("/", routes);
+app.use("/create", routes);
+
+
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
