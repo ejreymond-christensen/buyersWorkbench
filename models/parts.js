@@ -1,64 +1,65 @@
 'use strict';
+
 module.exports = function(sequelize, DataTypes) {
   var Parts = sequelize.define('Parts', {
   	pn: {
-  		type: Sequelize.INTEGER, 
+  		type: DataTypes.INTEGER, 
   		primaryKey: true, 
   		autoIncrement: true, 
   		defaultValue: 17920
   	},
     description: {
-    	type: Sequelize.STRING, 
+    	type: DataTypes.STRING, 
     	allowNull: false
     },
     uom: {
-    	type: Sequelize.STRING, 
+    	type: DataTypes.STRING, 
     	allowNull: false
     },
     buyer: {
-    	type: Sequelize.INTEGER, 
+    	type: DataTypes.INTEGER, 
     	allowNull: false
     },
     vendor: {
-    	type: Sequelize.STRING, 
+    	type: DataTypes.STRING, 
     	allowNull: true
     },
     vendor_pn: {
-    	type: Sequelize.STRING, 
+    	type: DataTypes.STRING, 
     	allowNull: true
     },
     lt_days: {
-    	type: Sequelize.INTEGER, 
+    	type: DataTypes.INTEGER, 
     	allowNull: false
     },
     cost: {
-    	type: Sequelize.DECIMAL(10,2), 
+    	type: DataTypes.DECIMAL(10,2), 
     	allowNull: false
     },
     sales_price: {
-    	type: Sequelize.DECIMAL(10,2), 
+    	type: DataTypes.DECIMAL(10,2), 
     	allowNull:false
     },
     ord_qty: {
-    	type: Sequelize.INTEGER, 
+    	type: DataTypes.INTEGER, 
     	allowNull: true, defaultValue: 1
     },
     qoh: {
-    	type: Sequelize.INTEGER, 
+    	type: DataTypes.INTEGER, 
     	allowNull: true, 
     	defaultValue: 0
     },
     ss: {
-    	type: Sequelize.INTEGER, 
+    	type: DataTypes.INTEGER, 
     	allowNull: true, 
     	defaultValue: 0
     },
     committed: {
-    	type: Sequelize.INTEGER, 
+    	type: DataTypes.INTEGER, 
     	allowNull: true
     },
     active: {
-    	type: Sequelize.BOOLEAN, 
+    	type: DataTypes.BOOLEAN, 
     	allowNull: false, 
     	defaultValue: 0
     }
