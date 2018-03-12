@@ -11,16 +11,16 @@ CREATE TABLE parts
 pn INT IDENTITY(17922,1) PRIMARY KEY,
 description VARCHAR(100) NOT NULL,
 uom VARCHAR(2) NOT NULL,
-buyer INT(4) NOT NULL
+buyer INT(4) NOT NULL,
 vendor VARCHAR(100) NULL,
 vendor_pn VARCHAR(100) NULL,
 lt_days INT NOT NULL,
 cost DECIMAL(10,2) NOT NULL,
 sales_price DECIMAL(10,2) NOT NULL,
-ord_qty INT NULL,
-quantity INT NULL,
-qoh INT NULL,
-ss INT NULL,
+ord_qty INT NULL 1,
+-- quantity INT NULL,
+qoh INT NULL 0,
+ss INT NULL 0,
 committed INT NULL,
 active BOOLEAN NOT NULL DEFAULT 0
 );
