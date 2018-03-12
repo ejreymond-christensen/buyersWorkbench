@@ -1,3 +1,6 @@
+
+// To be filled with Sequelize to create purchase order lines table
+
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var Purchase_order_lines = sequelize.define('Purchase_order_lines', {
@@ -40,3 +43,4 @@ module.exports = function(sequelize, DataTypes) {
 
   return Purchase_order_lines;
 };
+
