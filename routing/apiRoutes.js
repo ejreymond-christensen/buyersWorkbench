@@ -5,7 +5,7 @@ var PurchaseOrder = require("../models/purchase_orders.js");
 var PurchaseOrderLines = require("../models/purchase_order_lines.js");
 var SalesOrders = require("../models/sales_orders.js");
 var Parts = require("../models/parts.js");
-var Vendors = require("../models/Vendors.js");
+// var Vendors = require("../models/Vendors.js");
 
 // Making a purchase
 router.post("/api/purchase", function(req, res) {
@@ -19,49 +19,27 @@ router.post("/api/purchase", function(req, res) {
 
 	// Interactions with database tables (Sequelize)
 
-	// Create PO  - PO number generated automatically by Sequelize
-	PurchaseOrder.create({
+	for (var i = 0; i < req.reqArray; i++) {
 
-		vendor: req.vendor
+		// Create PO  - PO number generated automatically by Sequelize
+		PurchaseOrder.create({
 
-	}).then(function(results) {
-
-		// Create PO line
-		PurchaseOrderLines.create({
-
-			po_num: results.po_num,
-			po_ln: req.po_ln,
-			pn: req.part,
-			order_qty: req.qty,
-			delivered_qty: 0,
-			due_date: req.date,
-			open: true
-
-		});
-
-	});
-
-});
-
-// Getting part information
-router.get("/api/part/:pn", function(req, res) {
-
-	// If a part has been specified
-	if (req.params.pn) {
-
-		// Find the relevant part
-		Parts.findAll({
-
-			where: {
-
-				pn: req.params.pn
-
-			}
+			vendor: req.reqArray[i].vendor
 
 		}).then(function(results) {
 
-			// Send back results
-			res.json(results);
+			// Create PO line
+			PurchaseOrderLines.create({
+
+				po_num: results.po_num,
+				po_ln: req.reqArray[i].po_ln,
+				pn: req.reqArray[i].pn,
+				order_qty: req.reqArray[i].qty,
+				delivered_qty: 0,
+				due_date: req.reqArray[i].date,
+				open: true
+
+			});
 
 		});
 
@@ -69,94 +47,120 @@ router.get("/api/part/:pn", function(req, res) {
 
 });
 
-// Getting part-specific PO information
-router.get("/api/partPOLine/:pn", function(req, res) {
+// // Getting part information
+// router.get("/api/part/:pn", function(req, res) {
 
-	// If part from PO line specified
-	if (req.params.pn) {
+// 	// If a part has been specified
+// 	if (req.params.pn) {
 
-		// Find the relevant PO line
-		PurchaseOrderLines.findAll({
+// 		// Find the relevant part
+// 		Parts.findAll({
 
-			where: {
+// 			where: {
 
-				pn: req.params.pn
+// 				pn: req.params.pn
 
-			}
+// 			}
 
-		}).then(function(results) {
+// 		}).then(function(results) {
 
-			// Send back results
-			res.json(results);
+// 			// Send back results
+// 			res.json(results);
 
-		});
+// 		});
 
-	}
+// 	}
 
-});
+// });
 
-// Getting sales order information
-router.get("/api/sales/:pn", function(req, res) {
+// // Getting part-specific PO information
+// router.get("/api/partPOLine/:pn", function(req, res) {
+
+// 	// If part from PO line specified
+// 	if (req.params.pn) {
+
+// 		// Find the relevant PO line
+// 		PurchaseOrderLines.findAll({
+
+// 			where: {
+
+// 				pn: req.params.pn
+
+// 			}
+
+// 		}).then(function(results) {
+
+// 			// Send back results
+// 			res.json(results);
+
+// 		});
+
+// 	}
+
+// });
+
+// // Getting sales order information
+// router.get("/api/sales/:pn", function(req, res) {
 	
-	// If part specified
-	if (req.params.pn) {
+// 	// If part specified
+// 	if (req.params.pn) {
 
-		//Find the relevant sales order(s)
-		SalesOrders.findAll({
+// 		//Find the relevant sales order(s)
+// 		SalesOrders.findAll({
 
-			where: {
+// 			where: {
 
-				pn: req.params.pn
+// 				pn: req.params.pn
 
-			}
+// 			}
 
-		}).then(function(results) {
+// 		}).then(function(results) {
 
-			// Send back results
-			res.json(results);
+// 			// Send back results
+// 			res.json(results);
 
-		});
+// 		});
 
-	}
+// 	}
 
-	else {
+// 	else {
 
-		// Take all sales orders
-		SalesOrders.findAll({}).then(function(results) {
+// 		// Take all sales orders
+// 		SalesOrders.findAll({}).then(function(results) {
 
-			// Send back results 
-			res.json(results);
+// 			// Send back results 
+// 			res.json(results);
 
-		});
+// 		});
 
-	}
+// 	}
 
-});
+// });
 
-router.get("/api/vendor/:id", function(req, res) {
+// router.get("/api/vendor/:id", function(req, res) {
 
-	// If an id is specified
-	if (req.params.id) {
+// 	// If an id is specified
+// 	if (req.params.id) {
 
-		// Find the relevant vendor info
-		Vendors.findAll({
+// 		// Find the relevant vendor info
+// 		Vendors.findAll({
 
-			where: {
+// 			where: {
 
-				pn: req.params.id
+// 				pn: req.params.id
 
-			}
+// 			}
 
-		}).then(function(results) {
+// 		}).then(function(results) {
 
-			// Send back results
-			res.json(results);
+// 			// Send back results
+// 			res.json(results);
 
-		});
+// 		});
 
-	}
+// 	}
 
-});
+// });
 
-
+module.exports = router;
 
