@@ -13,7 +13,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     rev: {
     	type: DataTypes.STRING,
-    	allowNull: false
+    	allowNull: false,
+        defaultValue: "A"
     },
     uom: {
     	type: DataTypes.STRING,
