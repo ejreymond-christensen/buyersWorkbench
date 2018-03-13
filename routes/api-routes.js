@@ -1,63 +1,57 @@
 var express = require("express");
 var router = express.Router();
 
-var PurchaseOrder = require("../models/purchase_orders.js");
-var PurchaseOrderLines = require("../models/purchase_order_lines.js");
-var SalesOrders = require("../models/sales_orders.js");
-var Parts = require("../models/parts.js");
-// var Vendors = require("../models/Vendors.js");
+var db = require("../models/");
 
-module.exports = function(app) {
+function addPoAndPoLine(request, i) {
 
-	// Making a purchase
-	app.post("/api/purchase", function(req, res) {
+		db.Purchase_orders.create({
 
-		// Make sure the request has gone through
-		console.log("Trying to make a purchase");
+			vendor: request.vendor
 
-		// Verify the content of the request
-		console.log(req.body);
+		}).then(function(results) {
 
-		// Interactions with database tables (Sequelize)
+			db.Purchase_order_lines.create({
 
-		for (var i = 0; i < req.reqArray; i++) {
+				po_number: results.po_num,
+				po_ln: i,
+				pn: request.pn,
+				order_qty: request.qty,
+				delivered_qty: 0,
+				due_date: request.date,
+				open: true
 
-			// Create PO  - PO number generated automatically by Sequelize
-			PurchaseOrder.create({
-
-				vendor: req.reqArray[i].vendor
-
-			}).then(function(results) {
-
-				// Create PO line
-				PurchaseOrderLines.create({
-
-					po_num: results.po_num,
-					po_ln: req.reqArray[i].po_ln,
-					pn: req.reqArray[i].pn,
-					order_qty: req.reqArray[i].qty,
-					delivered_qty: 0,
-					due_date: req.reqArray[i].date,
-					open: true
-
-				});
-
-				res.json(results);
+			}).then(function() {
+				
+				console.log("Created PO line");
 
 			});
 
+		});
+
+}
+
+module.exports = function(app) {
+
+	app.post("/api/purchase", function(req, res) {
+
+		for (var i = 0; i < req.body.length; i++) {
+
+			var request = req.body[i];
+
+			addPoAndPoLine(request, i);
+
 		}
+
+		res.send("Complete");
 
 	});
 
-	// Getting part information
 	app.get("/api/part/:pn", function(req, res) {
 
-		// If a part has been specified
 		if (req.params.pn) {
 
-			// Find the relevant part
-			Parts.findAll({
+			db.Parts.findAll({
 
 				where: {
 
@@ -67,7 +61,6 @@ module.exports = function(app) {
 
 			}).then(function(results) {
 
-				// Send back results
 				res.json(results);
 
 			});
