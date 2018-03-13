@@ -34,7 +34,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     type: {
     	type: DataTypes.STRING,
-    	allowNull: true
+    	allowNull: true,
+      defaultValue: "P"
     },
     lt_days: {
     	type: DataTypes.INTEGER,
