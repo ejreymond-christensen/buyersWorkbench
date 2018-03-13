@@ -9,7 +9,7 @@ var exphbs = require("express-handlebars");
 // Sets up the Express App
 // =============================================================
 var app = express();
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 3000;
 
 // Requiring our models for syncing
 var db = require("./models");
@@ -23,12 +23,21 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 
 // Sets up the handlebars
+var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // Routes
 // =============================================================
-require("./routes/api-routes.js")(app);
+var routes = require("./controllers/buyers_workbench.js");
+
+
+// app.use(routes);
+app.use("/", routes);
+app.use("/create", routes);
+app.use("/user", routes);
+
+
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
