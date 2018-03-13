@@ -24,12 +24,11 @@ committed INT NULL,
 active BOOLEAN NOT NULL DEFAULT 0
 
 );
-
+ALTER TABLE parts AUTO_INCREMENT= 17922;
 INSERT INTO parts (description, uom, buyer, vendor, vendor_pn, lt_days, cost, sales_price, ord_qty, qoh, ss, committed)
 
 VALUES ("Mac Book - 15in", "EA", "2150", "APPLE", "HXY567229", "20", "1500", "2000", "1", "10", "3", "2", "1"), ("Mac Book - 11in", "EA", "2150", "APPLE", "FHG6261876", "15", "1200", "1800", "1", "9", "2", "2", "1"), ("Mircosoft laptop - 11in", "EA", "2050", "DELL", "67239202020", "15", "1200", "1800", "1", "9", "2", "2", "1");
 
-ALTER TABLE parts AUTO_INCREMENT= 17922;
 
 CREATE TABLE purchase_orders
 (

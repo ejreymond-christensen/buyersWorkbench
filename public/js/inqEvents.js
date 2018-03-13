@@ -7,7 +7,7 @@ $(document).ready(function() {
       type: "GET"
     }).then(function(result){
       console.log(result);
-      location.reload();
+      // location.reload();
       $("#pn").html(result.pn);
       $("#desc").html(result.description);
       $("#rev").html(result.rev);
