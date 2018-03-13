@@ -27,15 +27,19 @@ $("#signInSubmit").on("click", function(event) {
 	console.log("ID Check " + idCheck);
 	
 	$.get("/user", function(data){
-		for (var i=0; i< data.lenth; i++) {
-			conosle.log("data " + data[i].employeeID)
+		for (var i=0; i< data.length; i++) {
+			console.log("data " + data[0].employeeID);
+			console.log("data " + data[i].employeeID);
+		if (idCheck == data[i].employeeID){
+			window.location.href = "/req";
+		}
 		}
 	});
 });
 
 
 
-})	
+});	
 
 
 	
