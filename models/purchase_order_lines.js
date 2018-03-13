@@ -1,35 +1,35 @@
 
 // To be filled with Sequelize to create purchase order lines table
-
+var Sequelize =require("sequelize");
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var Purchase_order_lines = sequelize.define('Purchase_order_lines', {
     po_number: {
-      type: Sequelize.INTEGER, 
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     po_ln: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     pn: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     order_qty: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     delivered_qty: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     due_date: {
-      type: Sequelize.DATE,
+      type: DataTypes.DATE,
       allowNull: false
     },
     open: {
-      type: Sequelize.BOOLEAN, 
+      type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: 0
     }
@@ -43,4 +43,3 @@ module.exports = function(sequelize, DataTypes) {
 
   return Purchase_order_lines;
 };
-

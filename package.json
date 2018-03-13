@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/ejreymond-christensen/buyersWorkbench/issues"
   },
-  "homepage": "https://github.com/ejreymond-christensen/buyersWorkbench#readme"
+  "homepage": "https://github.com/ejreymond-christensen/buyersWorkbench#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "mysql2": "^1.5.2",
+    "sequelize": "^4.36.0"
+  }
 }
