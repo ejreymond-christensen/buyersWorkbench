@@ -1,6 +1,4 @@
 // To be filled with Sequelize to create sales orders table
-var Sequelize =require("sequelize");
-
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {

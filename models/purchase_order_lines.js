@@ -1,6 +1,4 @@
 // To be filled with Sequelize to create purchase order lines table
-var Sequelize =require("sequelize");
-
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {
