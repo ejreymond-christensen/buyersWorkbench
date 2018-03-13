@@ -3,9 +3,8 @@ $(document).ready(function() {
     event.preventDefault();
     var pn = $("#pnInput").val().trim();
     console.log(pn);
-    $.ajax("/api/part/", {
-      type: "GET",
-      data: pn
+    $.ajax("/api/part/"+pn, {
+      type: "GET"
     }).then(function(result){
       console.log(result);
       location.reload();

@@ -18,7 +18,6 @@ lt_days INT NOT NULL,
 cost DECIMAL(10,2) NOT NULL,
 sales_price DECIMAL(10,2) NOT NULL,
 ord_qty INT NULL 1,
--- quantity INT NULL,
 qoh INT NULL 0,
 ss INT NULL 0,
 committed INT NULL,
@@ -26,7 +25,7 @@ active BOOLEAN NOT NULL DEFAULT 0
 
 );
 
-INSERT INTO parts (description, uom, buyer, vendor, vendor_pn, lt_days, cost, sales_price, ord_qty, quantity, qoh, ss, committed)
+INSERT INTO parts (description, uom, buyer, vendor, vendor_pn, lt_days, cost, sales_price, ord_qty, qoh, ss, committed)
 
 VALUES ("Mac Book - 15in", "EA", "2150", "APPLE", "HXY567229", "20", "1500", "2000", "1", "10", "3", "2", "1"), ("Mac Book - 11in", "EA", "2150", "APPLE", "FHG6261876", "15", "1200", "1800", "1", "9", "2", "2", "1"), ("Mircosoft laptop - 11in", "EA", "2050", "DELL", "67239202020", "15", "1200", "1800", "1", "9", "2", "2", "1");
 
