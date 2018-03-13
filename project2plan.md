@@ -38,13 +38,13 @@ Nice to haves:
 - **simple** algorithm to calculate forecast then display on the forecast area via graph. ie, (total sales for the last 4 months) / 4. This would be very crud, but enough for an example.
 
 ________________________________________________________________________________
-Structure-
+<!-- Structure-
 
 Most likely we will need the following tables.
 -user table
 -item table (holds all item info).
 -demand table(holds all sales order info).
--supply table(holds all the purchase order info).
+-supply table(holds all the purchase order info). -->
 
 ________________________________________________________________________________
 

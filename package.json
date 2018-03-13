@@ -20,7 +20,10 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
+<<<<<<< HEAD
+=======
     "handlebars": "^4.0.11",
+>>>>>>> f98c6f6081e90532a904722eb986b691826fd111
     "mysql2": "^1.5.2",
     "sequelize": "^4.36.0"
   }

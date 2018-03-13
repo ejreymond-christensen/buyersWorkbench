@@ -1,9 +1,12 @@
+// To be filled with Sequelize to create sales orders table
+var Sequelize =require("sequelize");
+
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {
   var Sales_orders = sequelize.define('Sales_orders', {
     so_num: {
-      type: DataTypes.INTEGER, 
+      type: DataTypes.INTEGER,
       allowNull: true
     },
     so_ln: {
@@ -15,7 +18,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     customer: {
-      type: DataTypes.STRING, 
+      type: DataTypes.STRING,
       allowNull: true
     },
     order_qty: {
@@ -42,4 +45,3 @@ module.exports = function(sequelize, DataTypes) {
 
   return Sales_orders;
 };
-

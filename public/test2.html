@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery.js"></script>
   <link rel="stylesheet" href="css/style2.css">
   <title>Buyer's Workbench</title>
 </head>
@@ -15,8 +15,8 @@
   <nav class="navbar navbar-light bg-dark justify-content-between">
     <a class="navbar-brand"><i class="fab fa-pied-piper-alt"></i><span class="company"> Pied Piper - Buyer's Workbench</span></a>
     <form class="form-inline">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search PN" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <input class="form-control mr-sm-2" type="search" placeholder="Search PN" aria-label="Search" id="pnInput">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="pnSearch">Search</button>
     </form>
   </nav>
   <br>
@@ -31,20 +31,20 @@
           </thead>
           <tbody>
             <tr class="table-light">
-              <td><span class="bold">PN: </span><span class="bold color"> 345762</span></td>
-              <td colspan="2"><span class="bold">Desc: </span>MacBook Pro-15" Dis-Intel i7 -16GB Mem- 512GB HD- Space Gray</td>
-              <td><span class="bold">Rev: </span>E</td>
+              <td><span class="bold">PN: </span><span class="bold color" id="pn">345762</span></td>
+              <td colspan="2"><span class="bold">Desc: </span><span id="desc">MacBook Pro-15" Dis-Intel i7 -16GB Mem- 512GB HD- Space Gray</span></td>
+              <td><span class="bold">Rev: </span><span id="rev">E</span></td>
             </tr>
             <tr class="table-light">
-              <td><span class="bold">Buyer: </span>2150</td>
-              <td colspan="2"><span class="bold">Vendor: </span>45693 | Apple Computer</td>
-              <td><span class="bold">Type: </span>P</td>
+              <td><span class="bold">Buyer: </span><span id="buyer">2150</span></td>
+              <td colspan="2"><span class="bold">Vendor: </span>45693 | <span id="vendor">Apple Computer</span></td>
+              <td><span class="bold">Type: </span><span id="type">P</span></td>
             </tr>
             <tr class="table-light">
-              <td><span class="bold">LT: </span>15 (days)</td>
-              <td><span class="bold">Ord Qty: </span>1</td>
-              <td><span class="bold">Cost: </span>1800 USD</td>
-              <td><span class="bold">List: </span>2500 USD</td>
+              <td><span class="bold">LT: </span><span id="lt_days">15</span> (days)</td>
+              <td><span class="bold">Ord Qty: </span><span id="ord_qty">1</span></td>
+              <td><span class="bold">Cost: </span><span id="cost">1800</span> USD</td>
+              <td><span class="bold">List: </span><span id="list">2500</span> USD</td>
             </tr>
           </tbody>
         </table>
@@ -58,12 +58,12 @@
           </thead>
           <tbody>
             <tr class="table-light">
-              <td><span class="bold">QOH: </span>3</td>
-              <td><span class="bold">UOM: </span>EA</td>
+              <td><span class="bold">QOH: </span><span id="qoh">3</span></td>
+              <td><span class="bold">UOM: </span><span id="uom">EA</span></td>
             </tr>
             <tr class="table-light">
-              <td><span class="bold">SS: </span>2</td>
-              <td><span class="bold">Commited: </span>1</td>
+              <td><span class="bold">SS: </span><span id="ss">2</span></td>
+              <td><span class="bold">Commited: </span><span id="commited">1</span></td>
             </tr>
           </tbody>
         </table>
@@ -153,6 +153,7 @@
       </div>
     </div>
   </div>
+  <script src="js/inqEvents.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
