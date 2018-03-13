@@ -9,7 +9,7 @@ $(document).ready(function() {
     }).then(function(result){
       console.log(result);
       console.log("result[0].pn" + result[0].vendor);
-      // location.reload();
+      //location.reload();
       $("#pn").text(result[0].pn);
       $("#desc").text(result[0].description);
       $("#rev").text(result[0].rev);
