@@ -22,7 +22,5 @@ module.exports = function(sequelize, DataTypes) {
     });
   };
 
-
   return Purchase_orders;
 };
-
