@@ -3,26 +3,42 @@ $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').trigger('focus')
 })
 
-	$(".register-form").on("click", function(event) {
+$(document).ready(function() {
+$("#submit").on("click", function(event) {
 		event.preventDefault();
 		var newUser = {
 			name: $("#name").val().trim(),
-			employeeID: $("#employeeID").val().trim(),
+			employeeID: $("#buyerID").val().trim(),
 			employeeRole: $("#employeeRole").val().trim()
 		};
 
-		console.log("test" + name);
-		console.log("test" + employeeID);
-		console.log("test" + employeeRole);
 
 		$.ajax("/user/create", {
 			type: "POST",
 			data: newUser
 		}).then(function(){
-			console.log("new user added");
 			location.reload();
 		});
 	});
+
+$("#signInSubmit").on("click", function(event) {
+	event.preventDefault();
+	idCheck = $("#buyerID2").val().trim();
+	console.log("ID Check " + idCheck);
+	
+	$.get("/user", function(data){
+		for (var i=0; i< data.lenth; i++) {
+			conosle.log("data " + data[i].employeeID)
+		}
+	});
+});
+
+
+
+})	
+
+
+	
 
 
 
