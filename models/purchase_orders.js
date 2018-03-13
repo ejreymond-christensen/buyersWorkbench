@@ -1,8 +1,6 @@
 // To be filled with Sequelize to create purchase orders table
-var Sequelize =require("sequelize");
-
 'use strict';
-var Sequelize = require("sequelize");
+
 module.exports = function(sequelize, DataTypes) {
   var Purchase_orders = sequelize.define('Purchase_orders', {
     po_num: {

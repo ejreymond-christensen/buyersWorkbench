@@ -1,14 +1,11 @@
-var Sequelize =require("sequelize");
-
 'use strict';
-var Sequelize = require("sequelize");
+
 module.exports = function(sequelize, DataTypes) {
   var Parts = sequelize.define('Parts', {
   	pn: {
   		type: DataTypes.INTEGER,
   		primaryKey: true,
-  		autoIncrement: true,
-  		defaultValue: 17920
+  		autoIncrement: true
   	},
     description: {
     	type: DataTypes.STRING,
