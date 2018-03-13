@@ -1,6 +1,3 @@
-
-// To be filled with Sequelize to create purchase order lines table
-
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {
@@ -34,6 +31,8 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: 0
     }
+  }, {
+    timestamps: false
   });
 
   Purchase_order_lines.associate = function (models) {

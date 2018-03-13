@@ -1,6 +1,3 @@
-
-// To be filled with Sequelize to create purchase orders table
-
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {
@@ -15,6 +12,8 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     }
+  }, {
+    timestamps: false
   });
 
   Purchase_orders.associate = function(models) {
