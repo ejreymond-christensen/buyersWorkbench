@@ -8,44 +8,46 @@ var Parts = require("../models/parts.js");
 // var Vendors = require("../models/Vendors.js");
 
 // Making a purchase
-router.post("/api/purchase", function(req, res) {
+module.exports = function(app) {
+	router.post("/api/purchase", function(req, res) {
 
-	// Make sure the request has gone through
-	console.log("Trying to make a purchase");
+		// Make sure the request has gone through
+		console.log("Trying to make a purchase");
 
-	// Verify the content of the request
-	console.log(req.body);
+		// Verify the content of the request
+		console.log(req.body);
 
 
-	// Interactions with database tables (Sequelize)
+		// Interactions with database tables (Sequelize)
 
-	for (var i = 0; i < req.reqArray; i++) {
+		for (var i = 0; i < req.reqArray; i++) {
 
-		// Create PO  - PO number generated automatically by Sequelize
-		PurchaseOrder.create({
+			// Create PO  - PO number generated automatically by Sequelize
+			PurchaseOrder.create({
 
-			vendor: req.reqArray[i].vendor
+				vendor: req.reqArray[i].vendor
 
-		}).then(function(results) {
+			}).then(function(results) {
 
-			// Create PO line
-			PurchaseOrderLines.create({
+				// Create PO line
+				PurchaseOrderLines.create({
 
-				po_num: results.po_num,
-				po_ln: req.reqArray[i].po_ln,
-				pn: req.reqArray[i].pn,
-				order_qty: req.reqArray[i].qty,
-				delivered_qty: 0,
-				due_date: req.reqArray[i].date,
-				open: true
+					po_num: results.po_num,
+					po_ln: req.reqArray[i].po_ln,
+					pn: req.reqArray[i].pn,
+					order_qty: req.reqArray[i].qty,
+					delivered_qty: 0,
+					due_date: req.reqArray[i].date,
+					open: true
+
+				});
 
 			});
 
-		});
+		}
 
-	}
-
-});
+	});
+};
 
 // // Getting part information
 // router.get("/api/part/:pn", function(req, res) {
@@ -162,5 +164,4 @@ router.post("/api/purchase", function(req, res) {
 
 // });
 
-module.exports = router;
 
