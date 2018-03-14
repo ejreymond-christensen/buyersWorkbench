@@ -4,7 +4,7 @@ var router = express.Router();
 var db = require("../models/");
 
 function addPoAndPoLine(request, i) {
-
+	console.log("req func"+request);
 		db.Purchase_orders.create({
 
 			vendor: request.vendor
@@ -22,7 +22,7 @@ function addPoAndPoLine(request, i) {
 				open: true
 
 			}).then(function() {
-				
+
 				console.log("Created PO line");
 
 			});
@@ -34,13 +34,13 @@ function addPoAndPoLine(request, i) {
 module.exports = function(app) {
 
 	app.post("/api/purchase", function(req, res) {
-
+		console.log(req.body);
 		for (var i = 0; i < req.body.length; i++) {
 
 			var request = req.body[i];
 
 			addPoAndPoLine(request, i);
-
+			console.log("Hola2");
 		}
 
 		res.send("Complete");
@@ -69,14 +69,11 @@ module.exports = function(app) {
 
 	});
 
-	// Getting part-specific PO information
-	app.get("/api/partPOLine/:pn", function(req, res) {
+	app.get("/api/poLines/:pn", function(req, res) {
 
-		// If part from PO line specified
 		if (req.params.pn) {
 
-			// Find the relevant PO line
-			PurchaseOrderLines.findAll({
+			db.Purchase_order_lines.findAll({
 
 				where: {
 
@@ -86,23 +83,27 @@ module.exports = function(app) {
 
 			}).then(function(results) {
 
-				// Send back results
 				res.json(results);
 
 			});
 
 		}
+		else {
 
+			db.Purchase_order_lines.findAll({}).then(function(results) {
+
+				res.json(results);
+
+			});
+
+		}
 	});
 
-	// Getting sales order information
-	app.get("/api/sales/:pn", function(req, res) {
-		
-		// If part specified
+	app.get("/api/salesOrders/:pn", function(req, res) {
+
 		if (req.params.pn) {
 
-			//Find the relevant sales order(s)
-			SalesOrders.findAll({
+			db.Sales_orders.findAll({
 
 				where: {
 
@@ -112,7 +113,6 @@ module.exports = function(app) {
 
 			}).then(function(results) {
 
-				// Send back results
 				res.json(results);
 
 			});
@@ -121,10 +121,8 @@ module.exports = function(app) {
 
 		else {
 
-			// Take all sales orders
-			SalesOrders.findAll({}).then(function(results) {
+			db.Sales_orders.findAll({}).then(function(results) {
 
-				// Send back results 
 				res.json(results);
 
 			});
@@ -133,29 +131,63 @@ module.exports = function(app) {
 
 	});
 
-	app.get("/api/vendor/:id", function(req, res) {
+	// app.get("/api/vendor/:id", function(req, res) {
 
-		// If an id is specified
-		if (req.params.id) {
+	// 	// If an id is specified
+	// 	if (req.params.id) {
 
-			// Find the relevant vendor info
-			Vendors.findAll({
+	// 		// Find the relevant vendor info
+	// 		Vendors.findAll({
 
-				where: {
+	// 			where: {
 
-					pn: req.params.id
+	// 				pn: req.params.id
 
-				}
+	// 			}
 
-			}).then(function(results) {
+	// 		}).then(function(results) {
 
-				// Send back results
-				res.json(results);
+	// 			// Send back results
+	// 			res.json(results);
 
-			});
+	// 		});
 
-		}
+	// 	}
 
+	// });
+
+	app.get('/api/parts', (req, res) => {
+	    db.Parts.findAll({
+	      include: [
+	        {
+	          model: db.Purchase_order_lines,
+	        }
+	      ]
+	    }).then(Parts => {
+	      const resObj = Parts.map(user => {
+
+	        return Object.assign(
+	          {},
+	          {
+	            pn: user.pn,
+	            description: user.description,
+	            buyer: user.buyer,
+	            Purchase_order_lines: user.Purchase_order_lines.map(post => {
+
+	              return Object.assign(
+	                {},
+	                {
+	                  po_number: post.po_number,
+	                  po_ln: post.po_ln,
+	                  order_quantity: post.order_quantity,
+	                }
+	                )
+	            })
+	          }
+	        )
+	      });
+	      res.json(resObj)
+	    });
 	});
 
 };

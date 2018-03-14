@@ -20,7 +20,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     due_date: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false
     },
     open: {
@@ -32,15 +32,21 @@ module.exports = function(sequelize, DataTypes) {
     timestamps: false
   });
 
-  Purchase_order_lines.associate = function (models) {
-    models.Purchase_order_lines.belongsTo(models.Parts, {
-      foreignKey: {
-        allowNull: false
-      }
-    });
-  };
+  // Purchase_order_lines.associate = function (models) {
+  //   models.Purchase_order_lines.belongsTo(models.Parts, {
+  //     foreignKey: {
+  //       allowNull: false
+  //     }
+  //   });
+  // };
+
+  // Purchase_order_lines.associate = function (models) {
+  //   models.Purchase_order_lines.belongsTo(models.Purchase_orders, {
+  //     foreignKey: {
+  //       allowNull: false
+  //     }
+  //   });
+  // };
 
   return Purchase_order_lines;
 };
-
-

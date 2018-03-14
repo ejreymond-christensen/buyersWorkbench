@@ -18,7 +18,7 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   // Purchase_orders.associate = function(models) {
-  //   models.Parts.hasMany(models.Purchase_order_lines, {
+  //   models.Purchase_orders.hasMany(models.Purchase_order_lines, {
   //     onDelete: "CASCADE"
   //   });
   // };
