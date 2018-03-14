@@ -6,6 +6,8 @@
 // =============================================================
 // var path = require("path");
 
+var db = require("../models/");
+
 // Routes
 // =============================================================
 module.exports = function(app) {
@@ -29,6 +31,42 @@ module.exports = function(app) {
   // blog route loads req.handlebars
   app.get("/req", function(req, res) {
     res.render("req");
+  });
+
+  app.get('/users', (req, res) => {  
+    db.Parts.findAll({
+      include: [
+        {
+          model: db.Purchase_order_lines,
+        }
+      ]
+    }).then(Parts => {
+      const resObj = Parts.map(user => {
+
+        //tidy up the user data
+        return Object.assign(
+          {},
+          {
+            pn: user.pn,
+            description: user.description,
+            buyer: user.buyer,
+            Purchase_order_lines: user.Purchase_order_lines.map(post => {
+
+              //tidy up the post data
+              return Object.assign(
+                {},
+                {
+                  po_number: post.po_number,
+                  po_ln: post.po_ln,
+                  order_quantity: post.order_quantity,
+                }
+                )
+            })
+          }
+        )
+      });
+      res.json(resObj)
+    });
   });
 
 };

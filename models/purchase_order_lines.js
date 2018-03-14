@@ -19,10 +19,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    delivered_qty: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
     due_date: {
       type: DataTypes.DATE,
       allowNull: false
@@ -37,10 +33,14 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Purchase_order_lines.associate = function (models) {
-    models.Purchase_order_lines.belongsTo(models.Purchase_orders, {
-      foreignKey: "po_num"
+    models.Purchase_order_lines.belongsTo(models.Parts, {
+      foreignKey: {
+        allowNull: false
+      }
     });
   };
 
   return Purchase_order_lines;
 };
+
+

@@ -1,4 +1,5 @@
 
+
 $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').trigger('focus')
 })
@@ -37,6 +38,7 @@ $("#signInSubmit").on("click", function(event) {
 	});
 });
 });	
+
 
 
 	
