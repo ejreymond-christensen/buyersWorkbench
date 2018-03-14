@@ -8,3 +8,7 @@ VALUES ("iMac- 21.5in- 2.3GHz processor- 8G DDR- 1TB HD", "EA", "2150", "2001", 
 INSERT INTO Sales_orders (so_num, so_ln, pn, customer, order_qty, due_date)
 
 VALUES ("6473937", "1", "17923", "TRILOGY", "5", "2018-06-06"),("6473937", "2", "17950", "TRILOGY", "10", "2018-06-06"),("6473937", "3", "17954", "TRILOGY", "40", "2018-05-05"),("6473938", "1", "17930", "UNIV TEXAS", "2", "2018-06-06"),("6473938", "2", "17956", "UNIV TEXAS", "3", "2018-06-06"),("6473938", "3", "17923", "UNIV TEXAS", "1", "2018-06-06"),("6473939", "1", "17924", "TRILOGY", "1", "2018-06-06"),("6473940", "1", "17924", "TRILOGY", "1", "2018-05-05");
+
+INSERT INTO Purchase_orders (po_num, vendor)
+
+values ("324039", "TEST!");

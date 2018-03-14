@@ -25,5 +25,16 @@ $(document).ready(function() {
       $("#ss").text(result[0].ss);
       $("#commited").text(result[0].commited);
     });
+
+    $.ajax("/api/sales/" +pn, {
+      type: "GET"
+    }).then(function(result){
+      console.log("Sales result");
+      for (var i = 0; i < result.length; i++) {
+          console.log("Sales loop");
+        var soLine= "<tr class='table-light'><td>"+result[i].so_num+"</td><td>"+result[i].so_ln+"</td><td>"+result[i].so_customer+"</td><td>"+result[i].order_qty+"</td><td>"+result[i].due_date+"</td></tr>";
+        $("#soTable").append(soLine);
+      }
+    });
   });
 });

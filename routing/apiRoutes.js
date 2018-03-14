@@ -22,7 +22,7 @@ function addPoAndPoLine(request, i) {
 				open: true
 
 			}).then(function() {
-				
+
 				console.log("Created PO line");
 
 			});
@@ -97,12 +97,12 @@ module.exports = function(app) {
 
 	// Getting sales order information
 	app.get("/api/sales/:pn", function(req, res) {
-		
+
 		// If part specified
 		if (req.params.pn) {
 
 			//Find the relevant sales order(s)
-			SalesOrders.findAll({
+			db.Sales_orders.findAll({
 
 				where: {
 
@@ -124,7 +124,7 @@ module.exports = function(app) {
 			// Take all sales orders
 			SalesOrders.findAll({}).then(function(results) {
 
-				// Send back results 
+				// Send back results
 				res.json(results);
 
 			});

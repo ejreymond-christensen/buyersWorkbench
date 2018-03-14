@@ -33,7 +33,7 @@ module.exports = function(app) {
     res.render("req");
   });
 
-  app.get('/users', (req, res) => {  
+  app.get('/users', (req, res) => {
     db.Parts.findAll({
       include: [
         {
@@ -41,16 +41,16 @@ module.exports = function(app) {
         }
       ]
     }).then(Parts => {
-      const resObj = Parts.map(user => {
+      const resObj = Parts.map(part => {
 
         //tidy up the user data
         return Object.assign(
           {},
           {
-            pn: user.pn,
-            description: user.description,
-            buyer: user.buyer,
-            Purchase_order_lines: user.Purchase_order_lines.map(post => {
+            pn: part.pn,
+            description: part.description,
+            buyer: part.buyer,
+            Purchase_order_lines: part.Purchase_order_lines.map(post => {
 
               //tidy up the post data
               return Object.assign(

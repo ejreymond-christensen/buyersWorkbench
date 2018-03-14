@@ -33,7 +33,8 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-// db.Parts.hasMany(db.Purchase_order_lines);
+db.Parts.hasMany(db.Purchase_order_lines);
+db.Parts.hasMany(db.Sales_orders);
 // db.Purchase_order_lines.belongsTo(db.Parts);
 // db.Purchase_orders.hasMany(db.Purchase_order_lines);
 // db.Purchase_order_lines.belongsTo(db.Purchase_orders);
