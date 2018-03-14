@@ -14,14 +14,15 @@ $(document).ready(function(){
         };
         lineCount++;
         reqArray.push(poLine);
+        console.log(reqArray)
       }
       $.ajax("/api/purchase", {
         type: "POST",
         data: reqArray
       }).then(function(){
-        location.reload();
+        // location.reload();
       });
     });
-    console.log(reqArray);
+    // console.log(reqArray);
   });
 });

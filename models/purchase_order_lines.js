@@ -19,10 +19,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    delivered_qty: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
     due_date: {
       type: DataTypes.DATE,
       allowNull: false

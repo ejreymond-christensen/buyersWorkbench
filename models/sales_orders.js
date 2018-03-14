@@ -5,7 +5,7 @@ module.exports = function(sequelize, DataTypes) {
   var Sales_orders = sequelize.define('Sales_orders', {
     so_num: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: false
     },
     so_ln: {
       type: DataTypes.INTEGER,
@@ -20,10 +20,6 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     order_qty: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    delivered_qty: {
       type: DataTypes.INTEGER,
       allowNull: true
     },
