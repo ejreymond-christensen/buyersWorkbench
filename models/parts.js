@@ -75,6 +75,9 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     timestamps: false
   });
+  Parts.associate = function(models) {
+    Parts.hasMany(models.Purchase_order_lines);
+  };
 
   return Parts;
 };
