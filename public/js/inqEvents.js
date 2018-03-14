@@ -1,15 +1,15 @@
 $(document).ready(function() {
 
   $("#pnSearch").on("click", function(event) {
-    console.log("Trying to find part");
+    
     event.preventDefault();
+    
     var pn = $("#pnInput").val().trim();
+    
     $.ajax("/api/part/" + pn, {
       type: "GET"
     }).then(function(result){
-      console.log(result);
-      console.log("result[0].pn" + result[0].vendor);
-      //location.reload();
+
       $("#pn").text(result[0].pn);
       $("#desc").text(result[0].description);
       $("#rev").text(result[0].rev);
@@ -25,5 +25,27 @@ $(document).ready(function() {
       $("#ss").text(result[0].ss);
       $("#commited").text(result[0].commited);
     });
+
+    $.ajax("/api/poLines/" + pn, {
+      type: "GET"
+    }).then(function (result) {
+
+      console.log("PO Lines result below");
+
+      console.log(result);
+
+    });
+
+    $.ajax("/api/salesOrders/" + pn, {
+      type: "GET"
+    }).then(function (result) {
+
+      console.log("Sales orders result below");
+
+      console.log(result);
+
+    });
+
   });
+
 });
