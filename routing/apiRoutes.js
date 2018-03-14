@@ -4,7 +4,7 @@ var router = express.Router();
 var db = require("../models/");
 
 function addPoAndPoLine(request, i) {
-
+	console.log("req func"+request);
 		db.Purchase_orders.create({
 
 			vendor: request.vendor
@@ -34,13 +34,13 @@ function addPoAndPoLine(request, i) {
 module.exports = function(app) {
 
 	app.post("/api/purchase", function(req, res) {
-
+		console.log(req.body);
 		for (var i = 0; i < req.body.length; i++) {
 
 			var request = req.body[i];
 
 			addPoAndPoLine(request, i);
-
+			console.log("Hola2");
 		}
 
 		res.send("Complete");
@@ -88,7 +88,15 @@ module.exports = function(app) {
 			});
 
 		}
+		else {
 
+			db.Purchase_order_lines.findAll({}).then(function(results) {
+
+				res.json(results);
+
+			});
+
+		}
 	});
 
 	app.get("/api/salesOrders/:pn", function(req, res) {
@@ -113,7 +121,7 @@ module.exports = function(app) {
 
 		else {
 
-			SalesOrders.findAll({}).then(function(results) {
+			db.Sales_orders.findAll({}).then(function(results) {
 
 				res.json(results);
 

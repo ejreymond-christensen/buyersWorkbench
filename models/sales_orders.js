@@ -24,7 +24,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     due_date: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: true
     },
     open: {
