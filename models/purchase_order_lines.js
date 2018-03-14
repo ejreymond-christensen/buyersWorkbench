@@ -33,10 +33,14 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Purchase_order_lines.associate = function (models) {
-    models.Purchase_order_lines.belongsTo(models.Purchase_orders, {
-      foreignKey: "po_num"
+    models.Purchase_order_lines.belongsTo(models.Parts, {
+      foreignKey: {
+        allowNull: false
+      }
     });
   };
 
   return Purchase_order_lines;
 };
+
+
