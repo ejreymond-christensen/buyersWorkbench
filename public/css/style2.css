@@ -34,9 +34,8 @@ body{
 
 .date{
   width: 125px;
-}
+}.
 
 #registerButton {
-  margin-right: 5px;
+  margin-right: 20px;
 }
-
