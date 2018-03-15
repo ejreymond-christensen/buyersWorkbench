@@ -20,7 +20,6 @@ module.exports = function(app) {
   // index route loads itemInfo.handlebars
   app.get("/itemInfo", function(req, res) {
     res.render("iteminfo");
-    console.log("Trying to get to item info");
   });
 
   // cms route loads login.handlebars

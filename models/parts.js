@@ -77,7 +77,9 @@ module.exports = function(sequelize, DataTypes) {
   });
   
   // Parts.associate = function(models) {
-  //   Parts.hasMany(models.Purchase_order_lines);
+  //   Parts.hasMany(models.Purchase_order_lines, {
+  //     onDelete: "cascade"
+  //   });
   // };  
 
   return Parts;
