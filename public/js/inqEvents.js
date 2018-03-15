@@ -1,20 +1,30 @@
 $(document).ready(function() {
 
   $('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
-})
+  $('#myInput').trigger('focus');
+});
 
   $("#pnSearch").on("click", function(event) {
     event.preventDefault();
+    var part = $("#pnInput").val().trim();
 
+    if (part != "") {
+      populateInq(part);
+      $("#pnInput").val('');
+    }else{
+      populateInq("17922");
+      $("#pnInput").val('');
+    }
+  });
+
+
+  var populateInq = function(res){
+    var pn = res;
     var soTotal="0";
     var poTotal="0";
     var ssTotal="";
     var qohTotal="";
     //captures searched part and then clears the input field.
-    var pn = $("#pnInput").val().trim();
-    $("#pnInput").val('');
-
     $.ajax("/api/part/" + pn, {
       type: "GET"
     }).then(function(result){
@@ -79,14 +89,12 @@ $(document).ready(function() {
         }
       }
 
-        console.log("SO "+soTotal+" , SS "+ssTotal+" , PO "+poTotal+" , QOH "+qohTotal);
         $("#tDemand").text(parseInt(soTotal)+parseInt(ssTotal));
         $("#tSupply").text(parseInt(poTotal)+parseInt(qohTotal));
         $("#ordQty").text((parseInt(soTotal)+parseInt(ssTotal))-(parseInt(poTotal)+parseInt(qohTotal)));
     });
-  });
-
-
+  };
+  populateInq("17922");
 });
 
 
