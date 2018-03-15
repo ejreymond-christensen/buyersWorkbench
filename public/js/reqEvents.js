@@ -17,12 +17,13 @@ $(document).ready(function(){
         console.log(poLine);
         lineCount++;
         reqArray.push(poLine);
-        console.log(reqArray);
+        $.post("/api/purchase", poLine).then(function(){
+          // location.reload();
+        });
       }
-      $.post("/api/purchase", JSON.stringify(reqArray)).then(function(){
-        // location.reload();
-      });
+      console.log(reqArray);
     });
+
     // console.log(reqArray);
   });
 
