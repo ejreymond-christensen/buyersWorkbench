@@ -79,8 +79,6 @@ $(document).ready(function() {
     for (var i = 0; i < partsList.length; i++) {
       var currentPn= partsList[i].pn;
 
-      var dueDate= 2018-08-08;
-
       var currentDemand = 0;
       var currentSupply = 0;
       for (var y = 0; y < soList.length; y++) {
@@ -95,10 +93,10 @@ $(document).ready(function() {
       }
       if (((currentDemand + partsList[i].ss)-(currentSupply + partsList[i].qoh)) > 0) {
         var qty = (currentDemand + partsList[i].ss)-(currentSupply + partsList[i].qoh);
-        var dueDate = moment().add(partsList[i].lt_days, "days").format("YYYY MM DD");
+        var dueDate = moment().add(partsList[i].lt_days,"days").format("YYYY MM DD");
         var reqDate =  dueDate.split(" ").join("-");
 
-        var line= '<tr class="table-light"><td class="check"><div class="form-check"><input class="form-check-input" type="checkbox" value=""></div></td><td>'+partsList[i].buyer+'</td><td class= "pnInput">'+partsList[i].pn+'</td><td class= "dscInput">'+partsList[i].description+'</td><td class="vendor"><input class="form-control form-control-sm vendorInput" type="text" name="vendor" value="'+partsList[i].vendor+'" disabled></td><td class= "vendorNameInput">'+"APPLE"+'</td><td class="qty"><input class="form-control form-control-sm qtyInput" type="text" name="qty" value="'+qty+'"></td><td class="date"><input class="form-control form-control-sm dateInput" type="date" name="date" value="'+reqDate+'"></td></tr>';
+        var line= '<tr class="table-light"><td class="check"><div class="form-check"><input class="form-check-input" type="checkbox" value=""></div></td><td>'+partsList[i].buyer+'</td><td class= "pnInput">'+partsList[i].pn+'</td><td class= "dscInput">'+partsList[i].description+'</td><td class="vendor"><input class="form-control form-control-sm vendorInput" type="text" name="vendor" value="'+partsList[i].vendor+'" disabled></td><td class= "vendorNameInput">'+partsList[i].vendor_name+'</td><td class="qty"><input class="form-control form-control-sm qtyInput" type="text" name="qty" value="'+qty+'"></td><td class="date"><input class="form-control form-control-sm dateInput" type="date" name="date" value="'+reqDate+'"></td></tr>';
 
         $('#reqBody').append(line);
       }
