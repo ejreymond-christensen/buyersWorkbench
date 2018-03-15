@@ -1,10 +1,48 @@
 <nav class="navbar navbar-light bg-dark justify-content-between">
+  <div class="pos-f-t" id="itemHamburger">
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-dark p-4">
+      <ul class="hamburgerList" style="list-style-type: none">
+        <li><button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#graph">
+        Vendor Outlook
+        </button></li>
+      </ul>
+    </div>
+  </div>
+  <nav class="navbar navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+</div>
+ <div class="col align-self-center">
   <a class="navbar-brand"><i class="fab fa-pied-piper-alt"></i><span class="company"> Pied Piper - Buyer's Workbench</span></a>
+</div>
   <form class="form-inline">
     <input class="form-control mr-sm-2" type="search" placeholder="Search PN" aria-label="Search" id="pnInput">
     <button class="btn btn-outline-success my-2 my-sm-0" id="pnSearch">Search</button>
   </form>
 </nav>
+
+<div class="modal fade" id="graph" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Vendor Outlook</h5>
+        <button type="button" class="close btn btn-outline-success" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id='dashboard'></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <br>
 <div class="container">
   <div class="row">
@@ -120,8 +158,11 @@
       </table>
     </div>
     <div class="col-md-9">
-      <svg width="600" height="300"></svg>
+      <svg width="700" height="200"></svg>
     </div>
   </div>
-</div>
+</div>  
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
   <script type="text/javascript" src="/js/inqEvents.js"></script>
