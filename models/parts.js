@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {
-  var Parts = sequelize.define('Parts', {
-  	pn: {
+  var Part = sequelize.define('Part', {
+  	part_number: {
   		type: DataTypes.INTEGER,
   		primaryKey: true,
   		autoIncrement: true
@@ -27,6 +27,10 @@ module.exports = function(sequelize, DataTypes) {
     vendor: {
     	type: DataTypes.STRING,
     	allowNull: true
+    },
+    vendor_name: {
+        type: DataTypes.STRING,
+        allowNull: false
     },
     vendor_pn: {
     	type: DataTypes.STRING,
@@ -71,14 +75,31 @@ module.exports = function(sequelize, DataTypes) {
     	type: DataTypes.BOOLEAN,
     	allowNull: false,
     	defaultValue: 0
+    },
+    Thrity_past: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    sixty_past: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    ninety_past: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    current_f: {
+        type: DataTypes.INTEGER,
+        allowNull: false
     }
   }, {
     timestamps: false
   });
-  
+
   // Parts.associate = function(models) {
   //   Parts.hasMany(models.Purchase_order_lines);
-  // };  
+  // };
 
-  return Parts;
+
+  return Part;
 };

@@ -19,6 +19,7 @@ $(document).ready(function() {
       $("#rev").text(result[0].rev);
       $("#buyer").text(result[0].buyer);
       $("#vendor").text(result[0].vendor);
+      $("vendorName").text(result[0].vendor_name)
       $("#type").text(result[0].type);
       $("#lt_days").text(result[0].lt_days);
       $("#ord_qty").text(result[0].ord_qty);
