@@ -59,9 +59,20 @@ module.exports = function(app) {
 
 				}
 
-			}).then(function(results) {
+			}).then(function(results, error) {
 
-				res.json(results);
+				if (error) {
+
+					res.status(500);
+					res.send('error');
+
+				}
+
+				else {
+
+					res.json(results);
+
+				}
 
 			});
 
@@ -81,7 +92,21 @@ module.exports = function(app) {
 
 				}
 
-			}).then(function(results) {
+			}).then(function(results, error) {
+
+				if (error) return error;
+
+				res.json(results);
+
+			});
+
+		}
+
+		else {
+
+			db.Purchase_order_lines.findAll({}).then(function(results, error) {
+
+				if (error) return error;
 
 				res.json(results);
 
@@ -103,7 +128,13 @@ module.exports = function(app) {
 
 				}
 
-			}).then(function(results) {
+			}).then(function(results, error) {
+
+				if (error) {
+
+					res.send('error');
+
+				};
 
 				res.json(results);
 
@@ -113,7 +144,9 @@ module.exports = function(app) {
 
 		else {
 
-			SalesOrders.findAll({}).then(function(results) {
+			db.Sales_orders.findAll({}).then(function(results, error) {
+
+				if (error) return error;
 
 				res.json(results);
 

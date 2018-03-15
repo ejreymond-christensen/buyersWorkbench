@@ -7,8 +7,18 @@ $(document).ready(function() {
     var pn = $("#pnInput").val().trim();
     
     $.ajax("/api/part/" + pn, {
-      type: "GET"
+      type: "GET",
+      error: function() {
+
+        console.log("There's been an error");
+
+        // add error message to DOM
+        // $("")
+
+      }
     }).then(function(result){
+
+      console.log(result);
 
       $("#pn").text(result[0].pn);
       $("#desc").text(result[0].description);
