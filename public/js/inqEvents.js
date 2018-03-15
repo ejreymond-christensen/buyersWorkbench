@@ -50,7 +50,7 @@ $(document).ready(function() {
         poTotal= 0;
       }else{
         for (var i = 0; i < result.length; i++){
-          var poLine= "<tr class='table-light'><td>"+result[i].po_number+"</td><td>"+result[i].po_ln+"</td><td></td><td>"+result[i].order_qty+"</td><td>"+result[i].due_date+"</td></tr>";
+          var poLine= "<tr class='table-light'><td>"+result[i].po_number+"</td><td>"+result[i].po_ln+"</td><td>"+result[i].po_vendor+"</td><td>"+result[i].order_qty+"</td><td>"+result[i].due_date+"</td></tr>";
 
           $("#poTable").append(poLine);
 

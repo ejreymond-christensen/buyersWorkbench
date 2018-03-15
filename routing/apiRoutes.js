@@ -16,6 +16,7 @@ function addPoAndPoLine(request, i) {
 				po_number: results.po_num,
 				po_ln: i,
 				pn: request.pn,
+				po_vendor: results.vendor,
 				order_qty: request.qty,
 				delivered_qty: 0,
 				due_date: request.date,
@@ -48,7 +49,7 @@ module.exports = function(app) {
 
 	});
 
-	app.get("/api/part/:pn", function(req, res) {
+	app.get("/api/part/:pn?", function(req, res) {
 
 		if (req.params.pn) {
 
@@ -66,11 +67,49 @@ module.exports = function(app) {
 
 			});
 
+		}else {
+
+			db.Parts.findAll({}).then(function(results) {
+
+				res.json(results);
+
+			});
+
 		}
 
 	});
 
-	app.get("/api/poLines/:pn", function(req, res) {
+	app.get("/api/reqPart/:buyer?", function(req, res) {
+
+		if (req.params.buyer) {
+
+			db.Parts.findAll({
+
+				where: {
+
+					buyer: req.params.buyer
+
+				}
+
+			}).then(function(results) {
+
+				res.json(results);
+
+			});
+
+		}else {
+
+			db.Parts.findAll({}).then(function(results) {
+
+				res.json(results);
+
+			});
+
+		}
+
+	});
+
+	app.get("/api/poLines/:pn?", function(req, res) {
 
 		if (req.params.pn) {
 
@@ -100,7 +139,7 @@ module.exports = function(app) {
 		}
 	});
 
-	app.get("/api/salesOrders/:pn", function(req, res) {
+	app.get("/api/salesOrders/:pn?", function(req, res) {
 
 		if (req.params.pn) {
 
