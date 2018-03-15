@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {
-  var Parts = sequelize.define('Parts', {
-  	pn: {
+  var Part = sequelize.define('Part', {
+  	part_number: {
   		type: DataTypes.INTEGER,
   		primaryKey: true,
   		autoIncrement: true
@@ -80,5 +80,8 @@ module.exports = function(sequelize, DataTypes) {
   //   Parts.hasMany(models.Purchase_order_lines);
   // };  
 
-  return Parts;
+
+  return Part;
 };
+
+

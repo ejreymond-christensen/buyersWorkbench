@@ -13,6 +13,7 @@ description VARCHAR(100) NOT NULL,
 uom VARCHAR(2) NOT NULL,
 buyer INT(4) NOT NULL,
 vendor VARCHAR(100) NULL,
+vendor_name VARCHAR(100) NOT NULL,
 vendor_pn VARCHAR(100) NULL,
 lt_days INT NOT NULL,
 cost DECIMAL(10,2) NOT NULL,
@@ -22,6 +23,10 @@ qoh INT NULL 0,
 ss INT NULL 0,
 committed INT NULL,
 active BOOLEAN NOT NULL DEFAULT 0
+30_Past INT,
+60_Past INT,
+90_Past INT,
+current_f INT
 
 );
 ALTER TABLE parts AUTO_INCREMENT= 17922;

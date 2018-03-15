@@ -2,7 +2,7 @@
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {
-  var Purchase_order_lines = sequelize.define('Purchase_order_lines', {
+  var Purchase_order_line = sequelize.define('Purchase_order_line', {
     po_number: {
       type: DataTypes.INTEGER,
       allowNull: false
@@ -52,5 +52,6 @@ module.exports = function(sequelize, DataTypes) {
   //   });
   // };
 
-  return Purchase_order_lines;
+
+  return Purchase_order_line;
 };
