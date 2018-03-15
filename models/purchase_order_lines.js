@@ -11,6 +11,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false
     },
+    po_vendor: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     pn: {
       type: DataTypes.INTEGER,
       allowNull: false
