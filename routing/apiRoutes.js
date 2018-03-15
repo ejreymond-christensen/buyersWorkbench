@@ -35,13 +35,14 @@ module.exports = function(app) {
 
 	app.post("/api/purchase", function(req, res) {
 		console.log(req.body);
-		for (var i = 0; i < req.body.length; i++) {
+		addPoAndPoLine(req.body, 1);
 
-			var request = req.body[i];
-
-			addPoAndPoLine(request, i);
-			console.log("Hola2");
-		}
+		// for (var i = 0; i < req.body.length; i++) {
+    //
+		// 	var request = req.body.json[i];
+    //
+		// 	addPoAndPoLine(request, i);
+		// }
 
 		res.send("Complete");
 
