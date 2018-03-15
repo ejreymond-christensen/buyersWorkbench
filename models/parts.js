@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {
-  var Part = sequelize.define('Part', {
-  	part_number: {
+  var Parts = sequelize.define('Parts', {
+  	pn: {
   		type: DataTypes.INTEGER,
   		primaryKey: true,
   		autoIncrement: true
@@ -101,5 +101,5 @@ module.exports = function(sequelize, DataTypes) {
   // };
 
 
-  return Part;
+  return Parts;
 };
