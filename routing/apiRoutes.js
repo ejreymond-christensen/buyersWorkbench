@@ -11,7 +11,7 @@ function addPoAndPoLine(request, i) {
 
 		}).then(function(results) {
 
-			db.Purchase_order_line.create({
+			db.Purchase_order_lines.create({
 
 				po_number: results.po_num,
 				po_ln: i,
@@ -47,27 +47,6 @@ module.exports = function(app) {
 
 		res.send("Complete");
 
-	});
-	app.post("/api/part", function(req, res) {
-		db.Part.create({
-			description: req.body.description,
-			rev: req.body.rev,
-			uom: req.body.uom,
-			buyer: req.body.buyer,
-			vendor: req.body.vendor,
-			vendor_pn: req.body.vendor_pn,
-			type: req.body.type,
-			lt_days: req.body.lt_days,
-			cost: req.body.cost,
-			sales_price: req.body.sales_price,
-			ord_qty: req.body.ord_qty,
-			qoh: req.body.qoh,
-			ss: req.body.ss,
-			committed: req.body.committed,
-			active: req.body.active
-		}).then(function() {
-			res.send("Sucess!")
-	});
 	});
 
 	app.get("/api/part/:pn?", function(req, res) {

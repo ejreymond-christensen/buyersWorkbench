@@ -2,7 +2,7 @@
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {
-  var Purchase_order_line = sequelize.define('Purchase_order_line', {
+  var Purchase_order_lines = sequelize.define('Purchase_order_lines', {
     po_number: {
       type: DataTypes.INTEGER,
       allowNull: false
@@ -36,22 +36,7 @@ module.exports = function(sequelize, DataTypes) {
     timestamps: false
   });
 
-  // Purchase_order_lines.associate = function (models) {
-  //   models.Purchase_order_lines.belongsTo(models.Parts, {
-  //     foreignKey: {
-  //       allowNull: false
-  //     }
-  //   });
-  // };
-
-  // Purchase_order_lines.associate = function (models) {
-  //   models.Purchase_order_lines.belongsTo(models.Purchase_orders, {
-  //     foreignKey: {
-  //       allowNull: false
-  //     }
-  //   });
-  // };
 
 
-  return Purchase_order_line;
+  return Purchase_order_lines;
 };
