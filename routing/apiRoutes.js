@@ -49,6 +49,18 @@ module.exports = function(app) {
 
 	});
 
+	app.put("/api/forecastUpdate", function(req, res){
+		db.Parts.update({
+			current_f: req.body.qty
+		},{
+			where: {
+				pn: req.body.pn
+			}
+		}).then(function(result){
+			console.log(result);
+		});
+	});
+
 	app.get("/api/part/:pn?", function(req, res) {
 
 		if (req.params.pn) {

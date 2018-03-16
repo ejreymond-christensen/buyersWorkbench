@@ -1,5 +1,6 @@
 $(document).ready(function() {
   var reqArray = [];
+  var partsList;
   $('#submitBtn').on("click", function(event) {
     event.preventDefault();
     console.log("coucou");
@@ -14,18 +15,42 @@ $(document).ready(function() {
           "qty": $(this).find('.qtyInput').val(),
           "date": $(this).find('.dateInput').val()
         };
-        console.log(poLine);
-        lineCount++;
-        reqArray.push(poLine);
+       var current_f;
+
         var now = moment();
         var poLineDate = moment(poLine.date);
-        if (parseInt(poLine.qty) > 0 && parseInt(poLine.qty) !== NaN && poLineDate.isAfter(now)) {
+        if (parseInt(poLine.qty) > 0 && parseInt(poLine.qty) !== NaN && poLineDate.isAfter(now)) {       
+
+         for (var i = 0; i < partsList.length; i++) {
+           if(parseInt(partsList[i].pn) === parseInt($(this).find('.pnInput').text())){
+             current_f = partsList[i].current_f + parseInt($(this).find('.qtyInput').val());
+             console.log(partsList[i].current_f);
+           }
+         }
+         var forecastQty ={
+           pn: $(this).find('.pnInput').text(),
+           qty: current_f
+          };
+          console.log(poLine);
+          lineCount++;
+          reqArray.push(poLine);
+
+          $.ajax({
+            method: "PUT",
+            url: "/api/forecastUpdate",
+            data: forecastQty
+          }).then(function(){});
+
           $.post("/api/purchase", poLine).then(function() {
-          location.reload();
+            location.reload();
           });
+
         }
+
         else {
+        
           alert("Something went wrong with purchase order creation! Please try again.");
+        
         }
       }
     });
@@ -41,7 +66,6 @@ $(document).ready(function() {
 
   // function on load
   var reqLookup = function(buyer) {
-    var partsList;
     var poList;
     var soList;
     var getinfo = function(buyer) {
@@ -83,6 +107,7 @@ $(document).ready(function() {
 
   var calcReq = function(partsList, soList, poList){
     $('#reqBody').empty();
+    var minDate= moment().format("YYYY MM DD").split(" ").join("-");
     for (var i = 0; i < partsList.length; i++) {
       var currentPn= partsList[i].pn;
 
@@ -103,7 +128,7 @@ $(document).ready(function() {
         var dueDate = moment().add(partsList[i].lt_days,"days").format("YYYY MM DD");
         var reqDate =  dueDate.split(" ").join("-");
 
-        var line= '<tr class="table-light"><td class="check"><div class="form-check"><input class="form-check-input" type="checkbox" value=""></div></td><td>'+partsList[i].buyer+'</td><td class= "pnInput"><a href="/iteminfo/' + partsList[i].pn + '" target="_blank">' + partsList[i].pn+'</a></td><td class= "dscInput">'+partsList[i].description+'</td><td class="vendor"><input class="form-control form-control-sm vendorInput" type="text" name="vendor" value="'+partsList[i].vendor+'" disabled></td><td class= "vendorNameInput">'+partsList[i].vendor_name+'</td><td class="qty"><input class="form-control form-control-sm qtyInput" type="text" name="qty" value="'+qty+'"></td><td class="date"><input class="form-control form-control-sm dateInput" type="date" name="date" value="'+reqDate+'"></td></tr>';
+        var line= '<tr class="table-light"><td class="check"><div class="form-check"><input class="form-check-input" type="checkbox" value=""></div></td><td>'+partsList[i].buyer+'</td><td class= "pnInput">'+partsList[i].pn+'</td><td class= "dscInput">'+partsList[i].description+'</td><td class="vendor"><input class="form-control form-control-sm vendorInput" type="text" name="vendor" value="'+partsList[i].vendor+'" disabled></td><td class= "vendorNameInput">'+partsList[i].vendor_name+'</td><td class="qty"><input class="form-control form-control-sm qtyInput" type="text" name="qty" value="'+qty+'"></td><td class="date"><input class="form-control form-control-sm dateInput" type="date" name="date" value="'+reqDate+'" min="'+minDate+'"></td></tr>';
 
         $('#reqBody').append(line);
       }
