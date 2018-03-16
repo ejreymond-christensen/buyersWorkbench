@@ -153,15 +153,7 @@ module.exports = function(app) {
 			});
 
 		}
-		else {
 
-			db.Purchase_order_lines.findAll({}).then(function(results) {
-
-				res.json(results);
-
-			});
-
-		}
 	});
 
 	app.get("/api/salesOrders/:pn?", function(req, res) {
