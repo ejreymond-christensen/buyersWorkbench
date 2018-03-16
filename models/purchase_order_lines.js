@@ -21,11 +21,18 @@ module.exports = function(sequelize, DataTypes) {
     },
     order_qty: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      validate:{
+      min: 1,
+      isInt: true
+      }
     },
     due_date: {
       type: DataTypes.DATEONLY,
-      allowNull: false
+      allowNull: false,
+      validate:{
+      isAfter: "2017-06-06"
+      }
     },
     open: {
       type: DataTypes.BOOLEAN,
