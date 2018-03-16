@@ -107,7 +107,7 @@ $("#signInSubmit").on("click", function(event) {
 	event.preventDefault();
 	idCheck = $("#buyerID2").val().trim();
 	console.log("ID Check " + idCheck);
-	
+
 	$.get("/user", function(data){
 		for (var i=0; i< data.length; i++) {
 			console.log("data " + data[0].employeeID);

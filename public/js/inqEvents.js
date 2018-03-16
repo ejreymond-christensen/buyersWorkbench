@@ -1,44 +1,27 @@
 $(document).ready(function() {
 
-// var url = window.location.href;
-
-// var parsedUrl = url.split("/");
-
-// pn = parsedUrl[parsedUrl.length - 1];
-
-// renderData();
-
-
 //global vars
 
-var history30=0;
-var history60=0;
-var history90=0;
-var currentQuarter=0;
+
+var part;
 
 $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').trigger('focus');
 });
 
   $("#pnSearch").on("click", function(event) {
-    event.preventDefault();
-    var part = $("#pnInput").val().trim();
 
-    if (part != "") {
-      populateInq(part);
-      $("#pnInput").val('');
-    }else{
-      populateInq("17922");
-      $("#pnInput").val('');
+    event.preventDefault();
+
+    part = $("#pnInput").val().trim();
+
+    if (part !== "") {
+      window.location.href = "/iteminfo/" + part;
     }
+    d3.selectAll("svg > *").remove();
   });
 
-
   var populateInq = function(res){
-    var history30=0;
-    var history60=0;
-    var history90=0;
-    var currentQuarter=0;
 
     var pn = res;
     var soTotal="0";
@@ -72,11 +55,15 @@ $('#myModal').on('shown.bs.modal', function () {
       ssTotal= result[0].ss;
       qohTotal= result[0].qoh;
 
-      history30 = result[0].Thrity_past;
-      history60 = result[0].sixty_past;
-      history90 = result[0].ninety_past;
-      currentQuarter = result[0].current_f;
-      });
+      salesData =[
+      {Vendor:'Past 90',Qty: parseInt(result[0].ninety_past)},
+      {Vendor:'Past 60',Qty: parseInt(result[0].sixty_past)},
+      {Vendor:'Past 30',Qty: parseInt(result[0].Thrity_past)},
+      {Vendor:'Current Quater',Qty: parseInt(result[0].current_f)},
+      {Vendor:'Future Quater',Qty: Math.ceil((parseInt(result[0].ninety_past)+parseInt(result[0].sixty_past)+parseInt(result[0].Thrity_past))/3)}
+      ];
+      chartload();
+    });
 
     $.ajax("/api/poLines/" + pn, {
       type: "GET"
@@ -115,29 +102,33 @@ $('#myModal').on('shown.bs.modal', function () {
         $("#tDemand").text(parseInt(soTotal)+parseInt(ssTotal));
         $("#tSupply").text(parseInt(poTotal)+parseInt(qohTotal));
         $("#ordQty").text((parseInt(soTotal)+parseInt(ssTotal))-(parseInt(poTotal)+parseInt(qohTotal)));
+
         }
       }
     });
   };
 
-  populateInq("17922");
+  var url = window.location.href;
+  var parsedUrl = url.split("/");
+  part = parsedUrl[parsedUrl.length - 1];
+
+  if (part === "iteminfo" || part === "itemInfo") {
+    populateInq("17922");
+  }
+  else {
+    populateInq(part);
+  }
 
 });
 
- var salesData=[
-  {Vendor:'Past 90',Qty: 9},
-  {Vendor:'Past 60',Qty: 3},
-  {Vendor:'Past 30',Qty: 9},
-  {Vendor:'Current Quater',Qty: 2},
-  {Vendor:'Future Quater',Qty: (21)/3}
-  ];
+  var salesData;
 
   var svg=d3.select("svg");
 
   var padding={top: 20, right: 30, bottom: 30, left: 50};
 
   var colors=d3.schemeCategory20c;
-
+var chartload = function(){
   var chartArea={
     "width":parseInt(svg.style("width"))-padding.left-padding.right,
     "height":parseInt(svg.style("height"))-padding.top-padding.bottom};
@@ -193,7 +184,7 @@ $('#myModal').on('shown.bs.modal', function () {
     .attr("fill", function (d, i) {
       return colors[i];
     });
-
+};
 
 var freqData=[
 {Vendor:'Mac Book',freq:{Quarter1:4786, Quarter2:1319, Quarter3:249}}
