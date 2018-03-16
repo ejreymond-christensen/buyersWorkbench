@@ -18,7 +18,6 @@ $('#myModal').on('shown.bs.modal', function () {
     if (part !== "") {
       window.location.href = "/iteminfo/" + part;
     }
-    d3.selectAll("svg > *").remove();
   });
 
   var populateInq = function(res){
@@ -99,14 +98,16 @@ $('#myModal').on('shown.bs.modal', function () {
           soTotal= parseInt(soTotal) + parseInt(result[i].order_qty);
           var soLine= "<tr class='table-light'><td>"+result[i].so_num+"</td><td>"+result[i].so_ln+"</td><td>"+result[i].customer+"</td><td>"+result[i].order_qty+"</td><td>"+result[i].due_date+"</td></tr>";
           $("#soTable").append(soLine);
-
-        $("#tDemand").text(parseInt(soTotal)+parseInt(ssTotal));
-        $("#tSupply").text(parseInt(poTotal)+parseInt(qohTotal));
-        $("#ordQty").text((parseInt(soTotal)+parseInt(ssTotal))-(parseInt(poTotal)+parseInt(qohTotal)));
-
         }
       }
+    }).then(function(){
+      demandPop();
     });
+    var demandPop = function(){
+      $("#tDemand").text(parseInt(soTotal)+parseInt(ssTotal));
+      $("#tSupply").text(parseInt(poTotal)+parseInt(qohTotal));
+      $("#ordQty").text((parseInt(soTotal)+parseInt(ssTotal))-(parseInt(poTotal)+parseInt(qohTotal)));
+    };
   };
 
   var url = window.location.href;
