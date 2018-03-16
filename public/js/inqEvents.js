@@ -1,43 +1,41 @@
-var history30=0;
-var history60=0;
-var history90=0;
-var currentQuarter=0;
 $(document).ready(function() {
 
 //global vars
 
+
+var part;
 
 $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').trigger('focus');
 });
 
   $("#pnSearch").on("click", function(event) {
-    event.preventDefault();
-    var part = $("#pnInput").val().trim();
 
-    if (part != "") {
-      populateInq(part);
-      $("#pnInput").val('');
-    }else{
-      populateInq("17922");
-      $("#pnInput").val('');
+    event.preventDefault();
+
+    part = $("#pnInput").val().trim();
+
+    if (part !== "") {
+      window.location.href = "/iteminfo/" + part;
     }
     d3.selectAll("svg > *").remove();
   });
 
-
   var populateInq = function(res){
-
 
     var pn = res;
     var soTotal="0";
     var poTotal="0";
     var ssTotal="";
     var qohTotal="";
+
     //captures searched part and then clears the input field.
     $.ajax("/api/part/" + pn, {
-      type: "GET"
+      type: "GET",
+      error: function() {
+      }
     }).then(function(result){
+
       $("#pn").text(result[0].pn);
       $("#desc").text(result[0].description);
       $("#rev").text(result[0].rev);
@@ -56,11 +54,6 @@ $('#myModal').on('shown.bs.modal', function () {
 
       ssTotal= result[0].ss;
       qohTotal= result[0].qoh;
-
-      history30 = result[0].Thrity_past;
-      history60 = result[0].sixty_past;
-      history90 = result[0].ninety_past;
-      currentQuarter = result[0].current_f;
 
       salesData =[
       {Vendor:'Past 90',Qty: parseInt(result[0].ninety_past)},
@@ -94,7 +87,7 @@ $('#myModal').on('shown.bs.modal', function () {
 
     $.ajax("/api/salesOrders/" + pn, {
       type: "GET"
-    }).then(function (result) {
+    }).then(function(result) {
       $("#soTable").empty();
       if (result.length === 0) {
         var empty= '<td class="table-light" colspan="5"> No Current Sales Orders</td>';
@@ -106,23 +99,31 @@ $('#myModal').on('shown.bs.modal', function () {
           var soLine= "<tr class='table-light'><td>"+result[i].so_num+"</td><td>"+result[i].so_ln+"</td><td>"+result[i].customer+"</td><td>"+result[i].order_qty+"</td><td>"+result[i].due_date+"</td></tr>";
           $("#soTable").append(soLine);
 
-          soTotal= parseInt(soTotal) + parseInt(result[i].order_qty);
-        }
-      }
-
         $("#tDemand").text(parseInt(soTotal)+parseInt(ssTotal));
         $("#tSupply").text(parseInt(poTotal)+parseInt(qohTotal));
         $("#ordQty").text((parseInt(soTotal)+parseInt(ssTotal))-(parseInt(poTotal)+parseInt(qohTotal)));
 
+        }
+      }
     });
   };
-  populateInq("17922");
-});
 
+  var url = window.location.href;
+  var parsedUrl = url.split("/");
+  part = parsedUrl[parsedUrl.length - 1];
+
+  if (part === "iteminfo" || part === "itemInfo") {
+    populateInq("17922");
+  }
+  else {
+    populateInq(part);
+  }
+
+});
 
   var salesData;
 
-  var svg=d3.select("svg")
+  var svg=d3.select("svg");
 
   var padding={top: 20, right: 30, bottom: 30, left: 50};
 
