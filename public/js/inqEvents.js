@@ -1,6 +1,13 @@
 $(document).ready(function() {
 
-  $('#myModal').on('shown.bs.modal', function () {
+//global vars
+
+var history30=0;
+var history60=0;
+var history90=0;
+var currentQuarter=0;
+
+$('#myModal').on('shown.bs.modal', function () {
   $('#myInput').trigger('focus');
 });
 
@@ -19,6 +26,11 @@ $(document).ready(function() {
 
 
   var populateInq = function(res){
+    var history30=0;
+    var history60=0;
+    var history90=0;
+    var currentQuarter=0;
+
     var pn = res;
     var soTotal="0";
     var poTotal="0";
@@ -42,17 +54,20 @@ $(document).ready(function() {
       $("#qoh").text(result[0].qoh);
       $("#uom").text(result[0].uom);
       $("#ss").text(result[0].ss);
-      $("#commited").text(result[0].commited);
+      $("#commited").text(result[0].committed);
 
       ssTotal= result[0].ss;
       qohTotal= result[0].qoh;
+
+      history30 = result[0].Thrity_past;
+      history60 = result[0].sixty_past;
+      history90 = result[0].ninety_past;
+      currentQuarter = result[0].current_f;
     });
 
     $.ajax("/api/poLines/" + pn, {
       type: "GET"
     }).then(function (result) {
-      console.log("PO Lines result below");
-      console.log(result);
       $("#poTable").empty();
 
       if (result.length === 0) {
@@ -74,7 +89,6 @@ $(document).ready(function() {
       type: "GET"
     }).then(function (result) {
       $("#soTable").empty();
-      console.log(result.length);
       if (result.length === 0) {
         var empty= '<td class="table-light" colspan="5"> No Current Sales Orders</td>';
         $("#soTable").append(empty);
@@ -98,75 +112,75 @@ $(document).ready(function() {
 });
 
 
+  var salesData=[
+  {Vendor:'Past 90',Qty: 9},
+  {Vendor:'Past 60',Qty: 3},
+  {Vendor:'Past 30',Qty: 9},
+  {Vendor:'Current Quater',Qty: 2},
+  {Vendor:'Future Quater',Qty: (21)/3}
+  ];
 
+  var svg=d3.select("svg");
 
-var salesData=[
-{Vendor:'Previous Quater',Qty: 600},
-{Vendor:'Current Quater',Qty: 400},
-{Vendor:'Future Quater',Qty: 580}
-];
+  var padding={top: 20, right: 30, bottom: 30, left: 50};
 
-var svg=d3.select("svg");
+  var colors=d3.schemeCategory20c;
 
-var padding={top: 20, right: 30, bottom: 30, left: 50};
+  var chartArea={
+    "width":parseInt(svg.style("width"))-padding.left-padding.right,
+    "height":parseInt(svg.style("height"))-padding.top-padding.bottom};
+  var yScale = d3.scaleLinear()
+    .domain([0, d3.max(salesData, function(d, i){return d.Qty})])
+    .range([chartArea.height, 0]).nice();
 
-var colors=d3.schemeCategory20c;
+  var xScale = d3.scaleBand()
+    .domain(salesData.map(function(d) {return d.Vendor}))
+    .range([0, chartArea.width])
+    .padding(.2);
 
-var chartArea={
-  "width":parseInt(svg.style("width"))-padding.left-padding.right,
-  "height":parseInt(svg.style("height"))-padding.top-padding.bottom};
-var yScale = d3.scaleLinear()
-  .domain([0, d3.max(salesData, function(d, i){return d.Qty})])
-  .range([chartArea.height, 0]).nice();
+  var xAxis=svg.append("g")
+    .classed("xAxis", true)
+    .attr(
+      'transform', 'translate('+padding.left+', '+(chartArea.height+ padding.top)+' )'
+      )
+    .call(d3.axisBottom(xScale));
 
-var xScale = d3.scaleBand()
-  .domain(salesData.map(function(d) {return d.Vendor}))
-  .range([0, chartArea.width])
-  .padding(.2);
+  var yAxisFn=d3.axisLeft(yScale);
+  var yAxis=svg.append("g")
+    .classed("yAxis", true)
+    .attr(
+      'transform', 'translate('+padding.left+', '+padding.top+' )'
+      );
+    yAxisFn(yAxis);
 
-var xAxis=svg.append("g")
-  .classed("xAxis", true)
-  .attr(
-    'transform', 'translate('+padding.left+', '+(chartArea.height+ padding.top)+' )'
-    )
-  .call(d3.axisBottom(xScale));
+  var grid=svg.append("g")
+    .attr("class", "grid")
+    .attr(
+      'transform', 'translate('+padding.left+', '+padding.top+' )'
+      )
+    .call(d3.axisLeft(yScale)
+      .tickSize(-(chartArea.width))
+      .tickFormat("")
+      );
 
-var yAxisFn=d3.axisLeft(yScale);
-var yAxis=svg.append("g")
-  .classed("yAxis", true)
-  .attr(
-    'transform', 'translate('+padding.left+', '+padding.top+' )'
+  var rectGrp=svg.append("g").attr(
+    'transform', 'translate('+padding.left+', '+padding.top+')'
     );
-  yAxisFn(yAxis);
-
-var grid=svg.append("g")
-  .attr("class", "grid")
-  .attr(
-    'transform', 'translate('+padding.left+', '+padding.top+' )'
-    )
-  .call(d3.axisLeft(yScale)
-    .tickSize(-(chartArea.width))
-    .tickFormat("")
-    );
-
-var rectGrp=svg.append("g").attr(
-  'transform', 'translate('+padding.left+', '+padding.top+')'
-  );
-rectGrp.selectAll("rect").data(salesData).enter()
-  .append("rect")
-  .attr("width", xScale.bandwidth())
-  .attr("height", function (d, i) {
-    return chartArea.height-yScale(d.Qty);
-  })
-  .attr("x", function (d, i) {
-    return xScale(d.Vendor);
-  })
-  .attr("y", function (d, i) {
-    return yScale(d.Qty);
-  })
-  .attr("fill", function (d, i) {
-    return colors[i];
-  })
+  rectGrp.selectAll("rect").data(salesData).enter()
+    .append("rect")
+    .attr("width", xScale.bandwidth())
+    .attr("height", function (d, i) {
+      return chartArea.height-yScale(d.Qty);
+    })
+    .attr("x", function (d, i) {
+      return xScale(d.Vendor);
+    })
+    .attr("y", function (d, i) {
+      return yScale(d.Qty);
+    })
+    .attr("fill", function (d, i) {
+      return colors[i];
+    });
 
 
 var freqData=[
