@@ -63,7 +63,7 @@ $('#myModal').on('shown.bs.modal', function () {
       history60 = result[0].sixty_past;
       history90 = result[0].ninety_past;
       currentQuarter = result[0].current_f;
-    });
+      });
 
     $.ajax("/api/poLines/" + pn, {
       type: "GET"

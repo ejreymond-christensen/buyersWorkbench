@@ -2,27 +2,24 @@ html{
   font-size: 12px;
   line-height: normal;
 }
-body{
-  background: linear-gradient(to bottom right, #5D6D7E, #5D6D7E);
-
-    
-/*   background: linear-gradient(to top, white, black);
-
+body {
+  background: linear-gradient(to bottom right, #5D6D7E, #5D6D7E); 
+}
+#background {
+   
+    background: linear-gradient(black, white);
+  max-height: 100%
+  max-width: 100%
+    background-color: white;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
     background-image: url("../image/containers.jpg");
-  height: 500px;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-opacity: 0.5;*/
 }
-section{
-  background-image: url("../image/containers.jpg");
-  height: 706px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  opacity: 0.5;
-}
+
 .bold{
   font-weight: 700;
 }
@@ -35,14 +32,6 @@ section{
   color: #28B463;
   font-size: 32px;
 }
-/*#icon{
-  margin: 50px auto;
-  text-align: center;
-  text-shadow: -1px -1px 0px rgba(255,255,255,0.3), 1px 1px 0px rgba(0,0,0,0.8);
-  color: #333;
-  opacity: 0.4;
-  font-size: 500px;
-}*/
 
 .company{
   color: white;
@@ -99,7 +88,11 @@ section{
     display: block;
   }
 }
+#reqPath {
+    color: #28B463;
+    font-size: 18px;
 
+}
 /*Graph Model CSS*/
 path {  stroke: #fff; }
 path:hover {  opacity:0.9; }
