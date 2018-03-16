@@ -17,9 +17,16 @@ $(document).ready(function() {
         console.log(poLine);
         lineCount++;
         reqArray.push(poLine);
-        $.post("/api/purchase", poLine).then(function() {
-        location.reload();
-        });
+        var now = moment();
+        var poLineDate = moment(poLine.date);
+        if (parseInt(poLine.qty) > 0 && parseInt(poLine.qty) !== NaN && poLineDate.isAfter(now)) {
+          $.post("/api/purchase", poLine).then(function() {
+          location.reload();
+          });
+        }
+        else {
+          alert("Something went wrong with purchase order creation! Please try again.");
+        }
       }
     });
 
