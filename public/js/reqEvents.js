@@ -16,28 +16,42 @@ $(document).ready(function() {
           "date": $(this).find('.dateInput').val()
         };
        var current_f;
-       for (var i = 0; i < partsList.length; i++) {
-         if(parseInt(partsList[i].pn) === parseInt($(this).find('.pnInput').text())){
-           current_f = partsList[i].current_f + parseInt($(this).find('.qtyInput').val());
-           console.log(partsList[i].current_f);
-         }
-       }
-       var forecastQty ={
-         pn: $(this).find('.pnInput').text(),
-         qty: current_f
-      };
-        console.log(poLine);
-        lineCount++;
-        reqArray.push(poLine);
-        $.ajax({
-          method: "PUT",
-          url: "/api/forecastUpdate",
-          data: forecastQty
-        }).then(function(){});
 
-        $.post("/api/purchase", poLine).then(function() {
-        //location.reload();
-        });
+        var now = moment();
+        var poLineDate = moment(poLine.date);
+        if (parseInt(poLine.qty) > 0 && parseInt(poLine.qty) !== NaN && poLineDate.isAfter(now)) {       
+
+         for (var i = 0; i < partsList.length; i++) {
+           if(parseInt(partsList[i].pn) === parseInt($(this).find('.pnInput').text())){
+             current_f = partsList[i].current_f + parseInt($(this).find('.qtyInput').val());
+             console.log(partsList[i].current_f);
+           }
+         }
+         var forecastQty ={
+           pn: $(this).find('.pnInput').text(),
+           qty: current_f
+          };
+          console.log(poLine);
+          lineCount++;
+          reqArray.push(poLine);
+
+          $.ajax({
+            method: "PUT",
+            url: "/api/forecastUpdate",
+            data: forecastQty
+          }).then(function(){});
+
+          $.post("/api/purchase", poLine).then(function() {
+            location.reload();
+          });
+
+        }
+
+        else {
+        
+          alert("Something went wrong with purchase order creation! Please try again.");
+        
+        }
       }
     });
 
