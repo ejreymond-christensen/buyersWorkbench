@@ -17,10 +17,14 @@ module.exports = function(app) {
   app.get("/", function(req, res) {
     res.render("login");
   });
+
+  app.get("/partsList", function(req, res) {
+    res.render("partsList");
+  });
+
   // index route loads itemInfo.handlebars
-  app.get("/itemInfo", function(req, res) {
+  app.get("/iteminfo/:pn?", function(req, res) {
     res.render("iteminfo");
-    console.log("Trying to get to item info");
   });
 
   // cms route loads login.handlebars

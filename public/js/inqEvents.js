@@ -1,5 +1,14 @@
 $(document).ready(function() {
 
+// var url = window.location.href;
+
+// var parsedUrl = url.split("/");
+
+// pn = parsedUrl[parsedUrl.length - 1];
+
+// renderData();
+
+
 //global vars
 
 var history30=0;
@@ -36,10 +45,14 @@ $('#myModal').on('shown.bs.modal', function () {
     var poTotal="0";
     var ssTotal="";
     var qohTotal="";
+
     //captures searched part and then clears the input field.
     $.ajax("/api/part/" + pn, {
-      type: "GET"
+      type: "GET",
+      error: function() {
+      }
     }).then(function(result){
+
       $("#pn").text(result[0].pn);
       $("#desc").text(result[0].description);
       $("#rev").text(result[0].rev);
@@ -87,7 +100,7 @@ $('#myModal').on('shown.bs.modal', function () {
 
     $.ajax("/api/salesOrders/" + pn, {
       type: "GET"
-    }).then(function (result) {
+    }).then(function(result) {
       $("#soTable").empty();
       if (result.length === 0) {
         var empty= '<td class="table-light" colspan="5"> No Current Sales Orders</td>';
@@ -99,18 +112,17 @@ $('#myModal').on('shown.bs.modal', function () {
           var soLine= "<tr class='table-light'><td>"+result[i].so_num+"</td><td>"+result[i].so_ln+"</td><td>"+result[i].customer+"</td><td>"+result[i].order_qty+"</td><td>"+result[i].due_date+"</td></tr>";
           $("#soTable").append(soLine);
 
-          soTotal= parseInt(soTotal) + parseInt(result[i].order_qty);
-        }
-      }
-
         $("#tDemand").text(parseInt(soTotal)+parseInt(ssTotal));
         $("#tSupply").text(parseInt(poTotal)+parseInt(qohTotal));
         $("#ordQty").text((parseInt(soTotal)+parseInt(ssTotal))-(parseInt(poTotal)+parseInt(qohTotal)));
+        }
+      }
     });
   };
-  populateInq("17922");
-});
 
+  populateInq("17922");
+
+});
 
   var salesData=[
   {Vendor:'Past 90',Qty: 9},
