@@ -24,7 +24,7 @@ module.exports = function(app) {
 
   // index route loads itemInfo.handlebars
   app.get("/iteminfo/:pn?", function(req, res) {
-    res.render("iteminfo");
+    res.render("itemInfo");
   });
 
   // cms route loads login.handlebars
