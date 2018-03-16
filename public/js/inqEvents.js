@@ -96,6 +96,7 @@ $('#myModal').on('shown.bs.modal', function () {
       }
       else{
         for (var i = 0; i < result.length; i++) {
+          soTotal= parseInt(soTotal) + parseInt(result[i].order_qty);
           var soLine= "<tr class='table-light'><td>"+result[i].so_num+"</td><td>"+result[i].so_ln+"</td><td>"+result[i].customer+"</td><td>"+result[i].order_qty+"</td><td>"+result[i].due_date+"</td></tr>";
           $("#soTable").append(soLine);
 

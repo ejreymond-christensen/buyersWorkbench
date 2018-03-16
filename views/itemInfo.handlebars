@@ -1,23 +1,27 @@
 <nav class="navbar navbar-light bg-dark justify-content-between">
   <div class="pos-f-t" id="itemHamburger">
-  <div class="collapse" id="navbarToggleExternalContent">
-    <div class="bg-dark p-4">
-      <ul class="hamburgerList" style="list-style-type: none">
-        <li><button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#graph">
-        Vendor Outlook
-        </button></li>
-      </ul>
+    <div class="collapse" id="navbarToggleExternalContent">
+      <div class="bg-dark p-4">
+        <ul class="hamburgerList" style="list-style-type: none">
+          <li>
+            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#graph">Vendor Outlook</button>
+          </li>
+          <br>
+          <li>
+            <a href="/partsList"><button type="button" class="btn btn-outline-success">Parts List</button></a>
+          </li>
+        </ul>
+      </div>
     </div>
+    <nav class="navbar navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav>
   </div>
-  <nav class="navbar navbar-dark bg-dark">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  </nav>
-</div>
- <div class="col align-self-center">
-  <a class="navbar-brand"><i class="fab fa-pied-piper-alt"></i><span class="company"> Pied Piper - Buyer's Workbench</span></a><span>  |  </span><span><a id="reqPath" href="/req">Req</a></span>
-</div>
+  <div class="col align-self-center">
+    <a class="navbar-brand"><i class="fab fa-pied-piper-alt"></i><span class="company"> Pied Piper - Buyer's Workbench</span></a><span>  |  </span><span><a id="reqPath" href="/req">Req</a></span>
+  </div>
   <form class="form-inline">
     <input class="form-control mr-sm-2" type="search" placeholder="Search PN" aria-label="Search" id="pnInput">
     <button class="btn btn-outline-success my-2 my-sm-0" id="pnSearch">Search</button>
