@@ -92,9 +92,12 @@ $(document).ready(function() {
 
 
 var salesData=[
-{Vendor:'Previous Quater',Qty: 600},
-{Vendor:'Current Quater',Qty: 400},
-{Vendor:'Future Quater',Qty: 580}
+{Vendor:'Previous 90 Days',Qty: 600},
+{Vendor:'Previous 60 Days',Qty: 400},
+{Vendor:'Previous 30 Days',Qty: 580},
+{Vendor:'Current Quarter',Qty: 450},
+{Vendor:'Future Quarter',Qty: 700},
+
 ];
 
 var svg=d3.select("svg");
