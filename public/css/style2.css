@@ -2,8 +2,22 @@ html{
   font-size: 12px;
   line-height: normal;
 }
-body{
-  background: linear-gradient(to bottom right, #5D6D7E, #5D6D7E);
+body {
+  background: linear-gradient(to bottom right, #5D6D7E, #5D6D7E); 
+}
+#background {
+   
+    background: linear-gradient(black, white);
+  max-height: 100%
+  max-width: 100%
+    background-color: white;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-image: url("../image/containers.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .bold{
@@ -16,8 +30,9 @@ body{
 
 .fa-pied-piper-alt{
   color: #28B463;
-  font-size: 32px
+  font-size: 32px;
 }
+
 .company{
   color: white;
   font-size: 20px
@@ -73,9 +88,15 @@ body{
     display: block;
   }
 }
-
+#reqPath {
+    color: #28B463;
+    font-size: 18px;
+}
+#inquiryPath{
+  color: #28B463;
+  font-size: 18px;
+}
 /*Graph Model CSS*/
-
 path {  stroke: #fff; }
 path:hover {  opacity:0.9; }
 rect:hover {  fill:blue; }
@@ -104,4 +125,30 @@ rect:hover {  fill:blue; }
 .legendFreq, .legendPerc{
     align:right;
     width:50px;
+}
+#vendor1{
+    position: absolute;
+    top: 280px;
+    left: 52px;
+}
+#vendor2{
+    position: absolute;
+    top: 280px;
+    left: 193px;
+}
+#vendor3{
+    position: absolute;
+    top: 280px;
+    left: 305px;
+}
+#vendor4{
+    position: absolute;
+    top: 280px;
+    left: 430px;
+}
+@media screen and (min-width: 576px){
+  .modal-dialog {
+    max-width: 1000px;
+    margin: 1.75rem auto;
+}
 }
