@@ -3,10 +3,10 @@ html{
   line-height: normal;
 }
 body {
-  background: linear-gradient(to bottom right, #5D6D7E, #5D6D7E); 
+  background: linear-gradient(to bottom right, #5D6D7E, #5D6D7E);
 }
 #background {
-   
+
     background: linear-gradient(black, white);
   max-height: 100%
   max-width: 100%
@@ -77,6 +77,15 @@ body {
 #message5 {
   color: red;
 }
+#reqPath {
+    color: #28B463;
+    font-size: 18px;
+}
+#inquiryPath{
+  color: #28B463;
+  font-size: 18px;
+}
+
 @media screen and (max-width: 665px){
   #registerButton {
     display: none;
@@ -88,14 +97,7 @@ body {
     display: block;
   }
 }
-#reqPath {
-    color: #28B463;
-    font-size: 18px;
-}
-#inquiryPath{
-  color: #28B463;
-  font-size: 18px;
-}
+
 /*Graph Model CSS*/
 path {  stroke: #fff; }
 path:hover {  opacity:0.9; }
