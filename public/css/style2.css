@@ -91,7 +91,10 @@ body {
 #reqPath {
     color: #28B463;
     font-size: 18px;
-
+}
+#inquiryPath{
+  color: #28B463;
+  font-size: 18px;
 }
 /*Graph Model CSS*/
 path {  stroke: #fff; }
