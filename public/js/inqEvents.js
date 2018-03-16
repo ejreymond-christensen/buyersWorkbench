@@ -1,14 +1,5 @@
 $(document).ready(function() {
 
-// var url = window.location.href;
-
-// var parsedUrl = url.split("/");
-
-// pn = parsedUrl[parsedUrl.length - 1];
-
-// renderData();
-
-
 //global vars
 
 var history30=0;
@@ -16,29 +7,25 @@ var history60=0;
 var history90=0;
 var currentQuarter=0;
 
+var part;  
+
 $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').trigger('focus');
 });
 
   $("#pnSearch").on("click", function(event) {
-    event.preventDefault();
-    var part = $("#pnInput").val().trim();
 
-    if (part != "") {
-      populateInq(part);
-      $("#pnInput").val('');
-    }else{
-      populateInq("17922");
-      $("#pnInput").val('');
+    event.preventDefault();
+
+    part = $("#pnInput").val().trim();
+
+    if (part !== "") {
+      window.location.href = "/iteminfo/" + part;
     }
+
   });
 
-
   var populateInq = function(res){
-    var history30=0;
-    var history60=0;
-    var history90=0;
-    var currentQuarter=0;
 
     var pn = res;
     var soTotal="0";
@@ -120,7 +107,16 @@ $('#myModal').on('shown.bs.modal', function () {
     });
   };
 
-  populateInq("17922");
+  var url = window.location.href;
+  var parsedUrl = url.split("/");
+  part = parsedUrl[parsedUrl.length - 1];
+
+  if (part === "iteminfo" || part === "itemInfo") {
+    populateInq("17922");
+  }
+  else {
+    populateInq(part);
+  }
 
 });
 
