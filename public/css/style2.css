@@ -15,7 +15,14 @@ body{
   background-attachment: fixed;
   background-opacity: 0.5;*/
 }
-
+section{
+  background-image: url("../image/containers.jpg");
+  height: 706px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  opacity: 0.5;
+}
 .bold{
   font-weight: 700;
 }
