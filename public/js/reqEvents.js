@@ -24,7 +24,7 @@ $(document).ready(function() {
         var now = moment();
         var poLineDate = moment(poLine.date);
         // validates the QTY and date
-        if (parseInt(poLine.qty) > 0 && parseInt(poLine.qty) !== NaN && poLineDate.isAfter(now)) {
+        if (parseInt(poLine.qty) > 0 && isNaN(poLine.qty) === false && poLineDate.isAfter(now)) {
           for (var i = 0; i < partsList.length; i++) {
             //Checks the PO line PN and compares to db Parts
             if (parseInt(partsList[i].pn) === parseInt($(this).find('.pnInput').text())) {

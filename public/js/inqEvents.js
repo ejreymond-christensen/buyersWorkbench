@@ -174,13 +174,13 @@ var chartload = function(){
     "width":parseInt(svg.style("width"))-padding.left-padding.right,
     "height":parseInt(svg.style("height"))-padding.top-padding.bottom};
   var yScale = d3.scaleLinear()
-    .domain([0, d3.max(salesData, function(d, i){return d.Qty})])
+    .domain([0, d3.max(salesData, function(d, i){return d.Qty;})])
     .range([chartArea.height, 0]).nice();
 
   var xScale = d3.scaleBand()
-    .domain(salesData.map(function(d) {return d.Vendor}))
+    .domain(salesData.map(function(d) {return d.Vendor;}))
     .range([0, chartArea.width])
-    .padding(.2);
+    .padding(0.2);
 
   var xAxis=svg.append("g")
     .classed("xAxis", true)
@@ -249,7 +249,7 @@ function dashboard(id, fData){
     // function to handle histogram.
     function histoGram(fD){
         var hG={},    hGDim = {t: 60, r: 0, b: 30, l: 0};
-        hGDim.w = 500 - hGDim.l - hGDim.r,
+        hGDim.w = 500 - hGDim.l - hGDim.r;
         hGDim.h = 300 - hGDim.t - hGDim.b;
 
         //create svg for histogram.
@@ -286,7 +286,7 @@ function dashboard(id, fData){
             .on("mouseout",mouseout);// mouseout is defined below.
 
         //Create the frequency labels above the rectangles.
-        bars.append("text").text(function(d){ return d3.format(",")(d[1])})
+        bars.append("text").text(function(d){ return d3.format(",")(d[1]);})
             .attr("x", function(d) { return x(d[0])+x.rangeBand()/2; })
             .attr("y", function(d) { return y(d[1])-5; })
             .attr("text-anchor", "middle");
@@ -323,7 +323,7 @@ function dashboard(id, fData){
 
             // transition the frequency labels location and change value.
             bars.select("text").transition().duration(500)
-                .text(function(d){ return d3.format(",")(d[1])})
+                .text(function(d){ return d3.format(",")(d[1]);})
                 .attr("y", function(d) {return y(d[1])-5; });
         };
         return hG;

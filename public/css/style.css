@@ -52,7 +52,7 @@ body {
 /* TABLE STYLING */
 .company{
   color: white;
-  font-size: 20px
+  font-size: 20px;
 }
 .check{
   width: 60px;
@@ -66,7 +66,7 @@ body {
 
 .date{
   width: 125px;
-}.
+}
 
 /* LOGIN STYLES */
 #message1 {
@@ -94,12 +94,29 @@ body {
 }
 
 /*Graph Model CSS*/
-path {  stroke: #fff; }
-path:hover {  opacity:0.9; }
-rect:hover {  fill:blue; }
-.axis {  font: 10px sans-serif; }
-.legend tr{    border-bottom:1px solid grey; }
-.legend tr:first-child{    border-top:1px solid grey; }
+path {
+  stroke: #fff;
+}
+
+path:hover {
+  opacity:0.9;
+}
+
+rect:hover {
+  fill:blue;
+}
+
+.axis {
+  font: 10px sans-serif;
+}
+
+.legend tr {
+  border-bottom:1px solid grey;
+}
+
+.legend tr:first-child{
+  border-top:1px solid grey;
+}
 
 .axis path,
 .axis line {
@@ -108,36 +125,45 @@ rect:hover {  fill:blue; }
   shape-rendering: crispEdges;
 }
 
-.x.axis path {  display: none; }
+.x.axis path {
+  display: none;
+}
+
 .legend{
     margin-bottom:76px;
     display:inline-block;
     border-collapse: collapse;
     border-spacing: 0px;
 }
+
 .legend td{
     padding:4px 5px;
     vertical-align:bottom;
 }
+
 .legendFreq, .legendPerc{
     align:right;
     width:50px;
 }
+
 #vendor1{
     position: absolute;
     top: 280px;
     left: 52px;
 }
+
 #vendor2{
     position: absolute;
     top: 280px;
     left: 193px;
 }
+
 #vendor3{
     position: absolute;
     top: 280px;
     left: 305px;
 }
+
 #vendor4{
     position: absolute;
     top: 280px;
@@ -156,9 +182,11 @@ rect:hover {  fill:blue; }
   #registerButton {
     display: none;
   }
+
   #signInButton {
     display: none;
   }
+
   #hamburger {
     display: block;
   }
