@@ -1,5 +1,5 @@
 # Pied Piper ERP
-Buyer � Enterprise Resource Planning System
+Buyer's Enterprise Resource Planning System
 
 ## Description
 

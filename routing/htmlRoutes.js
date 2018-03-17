@@ -27,11 +27,6 @@ module.exports = function(app) {
     res.render("itemInfo");
   });
 
-  // cms route loads login.handlebars
-  app.get("/login", function(req, res) {
-    res.render("login");
-  });
-
   // blog route loads req.handlebars
   app.get("/req", function(req, res) {
     res.render("req");
