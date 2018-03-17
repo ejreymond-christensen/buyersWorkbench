@@ -29,16 +29,6 @@ app.set("view engine", "handlebars");
 
 // Routes
 // =============================================================
-
-var routes = require("./controllers/buyers_workbench.js");
-
-
-// app.use(routes);
-app.use("/", routes);
-app.use("/create", routes);
-app.use("/user", routes);
-
-
 require("./routing/apiRoutes.js")(app);
 require("./routing/htmlRoutes.js")(app);
 

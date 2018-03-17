@@ -36,7 +36,10 @@ $(document).ready(function() {
         error: function() {
         }
       }).then(function(result){
-
+        //Validation if the part Exists.
+        if (result.length ===0) {
+          alert("Aïe! This part doesn't exist!");
+        }else{
         //Populates the DOM with part info
         $("#pn").text(result[0].pn);
         $("#desc").text(result[0].description);
@@ -72,6 +75,7 @@ $(document).ready(function() {
 
         //Resolve to fufill the promise.
         resolve("Parts GET success!");
+        }
       });
     });
 
