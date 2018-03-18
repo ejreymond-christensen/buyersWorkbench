@@ -1,9 +1,9 @@
 # Pied Piper ERP
-Buyer's Enterprise Resource Planning System
+Buyer's Enterprise Resource Planning System using node, sequelize and MySQL
 
 ## Description
 
-This is an app that helps purchasing departments that are using ERP systems to get an overview/dashboard to facilitate purchasing operations.
+This is an app that helps purchasing departments that are using ERP systems to get an overview/dashboard to facilitate purchasing operations. Uses HTML - CSS - JS - jQuery - Handlebars - node - sequelize - MySQL.
 
 ## What this App Fixes
 
